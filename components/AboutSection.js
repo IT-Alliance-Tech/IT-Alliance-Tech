@@ -1,7 +1,8 @@
 import Link from 'next/link';
 import React from 'react';
-import aboutImg from '../assets/images/aboutUs.png'; // <-- make sure this path is correct
+import aboutImg from '../assets/images/aboutUs.png';
 import Image from 'next/image';
+import { motion } from 'framer-motion';
 
 const AboutSection = () => {
   return (
@@ -9,16 +10,28 @@ const AboutSection = () => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
           {/* Left - Image */}
-          <div className="order-2 lg:order-1">
+          <motion.div
+            className="order-2 lg:order-1"
+            initial={{ opacity: 0, x: 50 }} // ✅ slide from right
+            whileInView={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.8 }}
+            viewport={{ once: true }}
+          >
             <Image
-              src={aboutImg}   // ✅ must use .src
+              src={aboutImg}
               alt="IT Alliance Team"
               className="rounded-lg shadow-xl w-full"
             />
-          </div>
+          </motion.div>
 
           {/* Right - Title and Description */}
-          <div className="order-1 lg:order-2">
+          <motion.div
+            className="order-1 lg:order-2"
+            initial={{ opacity: 0, x: -50 }} // text can slide from left
+            whileInView={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.8, delay: 0.2 }}
+            viewport={{ once: true }}
+          >
             <h2 className="text-4xl font-bold text-gray-900 mb-6">
               About <span style={{ color: '#004aad' }}>Us</span>
             </h2>
@@ -37,7 +50,7 @@ const AboutSection = () => {
             >
               Read More
             </Link>
-          </div>
+          </motion.div>
         </div>
       </div>
     </section>
