@@ -2,7 +2,6 @@ import Link from 'next/link';
 import React from 'react';
 import aboutImg from '../assets/images/aboutUs.png';
 import Image from 'next/image';
-import { motion } from 'framer-motion';
 
 const AboutSection = () => {
   return (
@@ -10,7 +9,7 @@ const AboutSection = () => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
           {/* Left - Image */}
-          <motion.div
+          <div
             className="order-2 lg:order-1"
             initial={{ opacity: 0, x: 50 }} // ✅ slide from right
             whileInView={{ opacity: 1, x: 0 }}
@@ -22,10 +21,10 @@ const AboutSection = () => {
               alt="IT Alliance Team"
               className="rounded-lg shadow-xl w-full"
             />
-          </motion.div>
+          </div>
 
           {/* Right - Title and Description */}
-          <motion.div
+          <div
             className="order-1 lg:order-2"
             initial={{ opacity: 0, x: -50 }} // text can slide from left
             whileInView={{ opacity: 1, x: 0 }}
@@ -50,7 +49,7 @@ const AboutSection = () => {
             >
               Read More
             </Link>
-          </motion.div>
+          </div>
         </div>
       </div>
     </section>

@@ -1,5 +1,4 @@
 import React from 'react';
-import { motion } from 'framer-motion';
 
 const BannerSection = () => {
   return (
@@ -10,7 +9,7 @@ const BannerSection = () => {
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
         {/* Headline */}
-        <motion.h2
+        <h2
           initial={{ opacity: 0, y: 50 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, amount: 0.5 }}
@@ -19,10 +18,10 @@ const BannerSection = () => {
         >
           Transform your business with our expert digital marketing, <br />
           flexible staffing services, and custom web solutions.
-        </motion.h2>
+        </h2>
 
         {/* Description */}
-        <motion.p
+        <p
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, amount: 0.5 }}
@@ -30,10 +29,10 @@ const BannerSection = () => {
           className="mt-6 text-lg md:text-xl text-white/80"
         >
           Take your business to the next level with our tailored solutions and creative strategies.
-        </motion.p>
+        </p>
 
         {/* Button */}
-        <motion.div
+        <div
           initial={{ scale: 0.9, opacity: 0 }}
           whileInView={{ scale: 1, opacity: 1 }}
           viewport={{ once: true, amount: 0.5 }}
@@ -43,7 +42,7 @@ const BannerSection = () => {
           <button className="px-6 py-3 bg-yellow-400 hover:bg-yellow-500 text-blue-900 font-semibold rounded-lg shadow-lg transform transition-transform hover:scale-105">
             Get Started
           </button>
-        </motion.div>
+        </div>
       </div>
     </section>
   );

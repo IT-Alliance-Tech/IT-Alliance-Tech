@@ -6,6 +6,7 @@ import { RiMenuLine, RiCloseLine } from '@remixicon/react';
 
 // ✅ Import your logo image
 import logoImg from '../assets/images/itallianceLogo.png'; // <-- replace with your actual path
+import Link from 'next/link';
 
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = React.useState(false);
@@ -19,15 +20,15 @@ const Navbar = () => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-16">
           {/* Logo */}
-          <div className="flex-shrink-0">
+          <Link href={`/`} className="flex-shrink-0">
             <Image
               src={logoImg}
               alt="IT Alliance Logo"
-              width={100} // adjust width
+              width={80} // adjust width
               height={50} // adjust height
               className="object-contain"
             />
-          </div>
+          </Link>
 
           {/* Desktop Menu */}
           <div className="hidden md:block">
