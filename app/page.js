@@ -11,6 +11,7 @@ import ContactSection from '../components/ContactSection';
 export default function Home() {
   return (
     <main>
+      {/* Added a comment */}
       <Navbar />
       <HeroSection />
       <AboutSection />
