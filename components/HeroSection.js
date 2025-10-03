@@ -1,85 +1,99 @@
 "use client";
 
-import React from 'react';
-import "..//styles/homePage.css"
+import React, { useEffect, useRef } from "react";
+import "../styles/homePage.css";
 
 const HeroSection = () => {
+  const canvasRef = useRef(null);
 
-    const sectionStyle = {
-    backgroundImage: `url(${"../assets/images/heroImg.jpg"})`,
-    backgroundSize: 'cover', // Optional: Adjust as needed
-    backgroundPosition: 'center', // Optional: Adjust as needed
-    backgroundRepeat: 'no-repeat', // Optional: Adjust as needed
-    minHeight: '400px', // Example height
-    // display: 'flex',
-    // justifyContent: 'center',
-    // alignItems: 'center',
-    // color: 'white',
-    fontSize: '2em',
-  };
+  useEffect(() => {
+    const canvas = canvasRef.current;
+    const ctx = canvas.getContext("2d");
+
+    let width = (canvas.width = window.innerWidth);
+    let height = (canvas.height = window.innerHeight * 0.8);
+
+    const points = [];
+    const POINTS_COUNT = 80;
+
+    // Generate random points
+    for (let i = 0; i < POINTS_COUNT; i++) {
+      points.push({
+        x: Math.random() * width,
+        y: Math.random() * height,
+        vx: (Math.random() - 0.5) * 0.5,
+        vy: (Math.random() - 0.5) * 0.5,
+      });
+    }
+
+    function draw() {
+      ctx.clearRect(0, 0, width, height);
+
+      // Draw lines
+      for (let i = 0; i < POINTS_COUNT; i++) {
+        for (let j = i + 1; j < POINTS_COUNT; j++) {
+          const dx = points[i].x - points[j].x;
+          const dy = points[i].y - points[j].y;
+          const dist = Math.sqrt(dx * dx + dy * dy);
+          if (dist < 120) {
+            ctx.strokeStyle = `rgba(255,215,0,${1 - dist / 120})`;
+            ctx.lineWidth = 1;
+            ctx.beginPath();
+            ctx.moveTo(points[i].x, points[i].y);
+            ctx.lineTo(points[j].x, points[j].y);
+            ctx.stroke();
+          }
+        }
+      }
+
+      // Draw points
+      points.forEach((p) => {
+        ctx.fillStyle = "#ffd700";
+        ctx.beginPath();
+        ctx.arc(p.x, p.y, 3, 0, Math.PI * 2);
+        ctx.fill();
+
+        p.x += p.vx;
+        p.y += p.vy;
+
+        if (p.x < 0 || p.x > width) p.vx *= -1;
+        if (p.y < 0 || p.y > height) p.vy *= -1;
+      });
+
+      requestAnimationFrame(draw);
+    }
+
+    draw();
+
+    const handleResize = () => {
+      width = canvas.width = window.innerWidth;
+      height = canvas.height = window.innerHeight * 0.8;
+    };
+    window.addEventListener("resize", handleResize);
+
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
 
   const handleGetStarted = () => {
-    document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' });
-  };
-
-  const handleConnectWithUs = () => {
-    document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' });
+    document.getElementById("contact")?.scrollIntoView({ behavior: "smooth" });
   };
 
   return (
-    <section className="pt-20 pb-16 heroSection">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center">
-
-          {/* Tagline/Value Prop */}
-
-          <div className='my-5'>
-          <h1 className="text-5xl md:text-6xl font-bold text-white mb-6">
-            Empowering Your Business in the{' '}
-            <span style={{ color: '#004aad' }}>Digital Era</span>
-          </h1>
-
-          {/* Short Description */}
-          <p className="text-xl text-warning-600 mb-8 max-w-3xl mx-auto leading-relaxed">
-            Transform your business with cutting-edge technology solutions. We deliver 
-            innovative IT services, digital marketing strategies, and custom web applications 
-            that drive growth and success in today's competitive landscape.
-          </p>
-
-
-           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <button
-              onClick={handleGetStarted}
-              className="px-8 py-4 text-white font-semibold rounded-lg shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-200"
-              style={{ backgroundColor: '#004aad' }}
-            >
-              Get Started
-            </button>
-            <button
-              onClick={handleConnectWithUs}
-              className="px-8 py-4 border-2 font-semibold rounded-lg hover:bg-blue-600 hover:text-white transition-all duration-200"
-              style={{ borderColor: '#004aad', color: '#004aad' }}
-            >
-              Connect With Us
-            </button>
-          </div>
-
-          </div>
-
-          {/* Hero Image */}
-          {/* <div className="mb-10">
-            <Image
-              src={heroImage}
-              alt="Digital transformation and technology"
-              className="mx-auto rounded-lg shadow-2xl  w-full"
-              height={250}
-              width={250}
-            />
-          </div> */}
-
-          {/* CTA Buttons */}
-         
-        </div>
+    <section className="hero-section">
+      <canvas ref={canvasRef} className="hero-canvas" />
+      <div className="hero-content">
+        <h1 className="text-4xl md:text-6xl font-bold text-white mb-6">
+          Empowering Your Business in the{" "}
+          <span style={{ color: "#ffd700" }}>Digital Era</span>
+        </h1>
+        <p className="text-xl text-white/80 mb-8 max-w-3xl mx-auto leading-relaxed">
+          Transform your business with cutting-edge technology solutions. We
+          deliver innovative IT services, digital marketing strategies, and
+          custom web applications that drive growth and success.
+        </p>
+        <button className="hero-btn-primary" onClick={handleGetStarted}>
+          Get Started
+        </button>
       </div>
     </section>
   );

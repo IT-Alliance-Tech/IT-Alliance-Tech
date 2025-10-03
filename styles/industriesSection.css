@@ -1,0 +1,53 @@
+/* Base hidden state */
+.industry-card {
+  opacity: 0;
+  transform: translateY(40px) scale(0.95);
+  transition: all 0.8s ease;
+}
+
+/* Active reveal */
+.industry-card.active {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+}
+
+/* Hover effect */
+.industry-card:hover {
+  transform: scale(1.05) rotate3d(1, 1, 0, 4deg);
+  box-shadow: 0 12px 24px rgba(0, 74, 173, 0.2);
+  transition: all 0.4s ease;
+}
+
+/* Scroll buttons bounce */
+.scroll-btn {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 10;
+  padding: 12px;
+  border-radius: 50%;
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+  animation: bounce 2s infinite;
+  transition: all 0.3s ease;
+}
+
+.scroll-btn:hover {
+  transform: translateY(-50%) scale(1.1);
+}
+
+.left-btn {
+  left: 0;
+}
+
+.right-btn {
+  right: 0;
+}
+
+@keyframes bounce {
+  0%, 100% {
+    transform: translateY(-50%) scale(1);
+  }
+  50% {
+    transform: translateY(-55%) scale(1.05);
+  }
+}

@@ -1,0 +1,42 @@
+/* Animation Base */
+.reveal {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: all 0.9s ease;
+}
+
+.reveal.active {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Slide from Left */
+.slide-left {
+  transform: translateX(-80px);
+}
+
+.slide-left.active {
+  transform: translateX(0);
+}
+
+/* Slide from Right */
+.slide-right {
+  transform: translateX(80px);
+}
+
+.slide-right.active {
+  transform: translateX(0);
+}
+
+/* Extra polish for smooth fade */
+.aboutSection h2,
+.aboutSection p,
+.aboutSection a {
+  transition: all 1s ease;
+}
+
+/* Link hover glow */
+.aboutSection a:hover {
+  box-shadow: 0 0 15px rgba(0, 74, 173, 0.5);
+  transform: translateY(-3px) scale(1.05);
+}

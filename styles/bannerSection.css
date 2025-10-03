@@ -1,0 +1,86 @@
+/* Reveal base */
+.reveal {
+  opacity: 0;
+  transition: all 1s ease;
+}
+
+.reveal.active {
+  opacity: 1;
+}
+
+/* Fade up for paragraph */
+.fade-up {
+  transform: translateY(30px);
+}
+.fade-up.active {
+  transform: translateY(0);
+}
+
+/* Headline shimmer effect */
+.fade-shimmer {
+  background-size: 200% auto;
+  animation: shimmerMove 3s linear infinite;
+}
+
+@keyframes shimmerMove {
+  0% {
+    background-position: 200% center;
+  }
+  100% {
+    background-position: -200% center;
+  }
+}
+
+/* Button bounce */
+.bounce-in {
+  transform: scale(0.8);
+}
+.bounce-in.active {
+  transform: scale(1);
+  animation: bounceIn 0.8s ease;
+}
+
+@keyframes bounceIn {
+  0% {
+    transform: scale(0.8);
+  }
+  50% {
+    transform: scale(1.1);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+/* Floating decorative shapes */
+.shape {
+  position: absolute;
+  border-radius: 50%;
+  opacity: 0.25;
+  animation: float 8s ease-in-out infinite alternate;
+}
+
+.shape1 {
+  top: -80px;
+  left: -80px;
+  width: 280px;
+  height: 280px;
+  background: #9333ea; /* purple */
+}
+
+.shape2 {
+  bottom: -100px;
+  right: -120px;
+  width: 380px;
+  height: 380px;
+  background: #ec4899; /* pink */
+}
+
+@keyframes float {
+  from {
+    transform: translateY(0) translateX(0);
+  }
+  to {
+    transform: translateY(-30px) translateX(20px);
+  }
+}

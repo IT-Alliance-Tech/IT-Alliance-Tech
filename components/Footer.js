@@ -86,7 +86,7 @@ const Footer = () => {
           </div>
 
           {/* Services */}
-          <div className="col-span-1 sm:col-span-2 md:col-span-2">
+          <div className="col-span-1 sm:col-span-2">
             <h3 className="text-lg font-semibold mb-4">Services</h3>
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
               {services.map((service, index) => (
