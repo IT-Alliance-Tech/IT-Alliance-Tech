@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useEffect } from "react";
-import "../styles/Contact.css";
+import "../styles/contact.css";
 
 const ContactSection = () => {
   // You can keep your existing useState, handleChange, validateForm, handleSubmit code
