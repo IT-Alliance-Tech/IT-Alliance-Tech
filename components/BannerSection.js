@@ -25,7 +25,7 @@ const BannerSection = () => {
   return (
     <section
       className="py-16 relative overflow-hidden bannerSection"
-      style={{ backgroundColor: "#004aad" }}
+      style={{ backgroundColor: "#001a33" }}
     >
       {/* Decorative floating shapes */}
       <div className="shape shape1"></div>

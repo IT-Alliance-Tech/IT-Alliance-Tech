@@ -1,9 +1,11 @@
-import React from "react";
+"use client";
+
+import React, { useEffect } from "react";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import Image from "next/image";
 
-// ✅ Import all service images
+// ✅ Import service images
 import mspImg from "../../assets/images/service1.png";
 import aiChatbotImg from "../../assets/images/service2.png";
 import digitalGrowthImg from "../../assets/images/service3.png";
@@ -79,51 +81,77 @@ const ServicesPage = () => {
     },
   ];
 
+  useEffect(() => {
+    const revealElements = document.querySelectorAll(".animate-reveal");
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("active");
+          }
+        });
+      },
+      { threshold: 0.25 }
+    );
+
+    revealElements.forEach((el) => observer.observe(el));
+    return () => observer.disconnect();
+  }, []);
+
   return (
     <div className="min-h-screen">
       <Navbar />
 
-      {/* Hero Section */}
-      <section className="relative pt-20 pb-16 bg-gradient-to-br from-blue-600 to-blue-800 text-white">
-        <div className="absolute inset-0 bg-black opacity-50"></div>
-        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold mb-4">
-            Our Services
-          </h1>
-          <p className="text-xl sm:text-2xl text-blue-100">
-            Empowering Your Digital Growth
-          </p>
+      {/* Hero */}
+      <section className="relative pt-20 pb-16 bg-gradient-to-br from-indigo-700 to-purple-800 text-white">
+        <div className="absolute inset-0 bg-black opacity-40"></div>
+        <div className="relative max-w-7xl mx-auto px-6 text-center">
+          <h1 className="text-5xl font-bold mb-4">Our Services</h1>
+          <p className="text-xl text-blue-100">Empowering Your Digital Growth</p>
         </div>
       </section>
 
-      {/* Services Section */}
+      {/* Services */}
       <section className="py-20 bg-white">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-0">
+        <div className="max-w-7xl mx-auto px-6">
           <div className="space-y-20">
             {services.map((service, index) => (
               <div
                 key={index}
-                className={`shadow-lg p-6 rounded-2xl grid grid-cols-1 lg:grid-cols-2 gap-12 items-center ${
-                  index % 2 === 1 ? "lg:grid-flow-col-dense" : ""
-                }`}
+                className={`grid grid-cols-1 lg:grid-cols-2 gap-12 items-center p-6 rounded-2xl shadow-lg bg-gray-50
+                  ${index % 2 === 1 ? "lg:grid-flow-col-dense" : ""}`}
               >
                 {/* Image */}
                 <div className={`${index % 2 === 1 ? "lg:col-start-2" : ""}`}>
-                  <div className="rounded-2xl shadow-lg w-full aspect-w-16 aspect-h-9 overflow-hidden">
+                  <div
+                    className={`rounded-2xl overflow-hidden w-full shadow-xl animate-reveal ${
+                      index % 4 === 0
+                        ? "zoom-in"
+                        : index % 4 === 1
+                        ? "float-in"
+                        : index % 4 === 2
+                        ? "rotate-in"
+                        : "fade-in"
+                    }`}
+                  >
                     <Image
                       src={service.image}
                       alt={service.title}
-                      className="object-cover w-full h-full"
+                      className="w-full h-auto rounded-2xl"
+                      priority={index < 2}
                     />
                   </div>
                 </div>
 
-                {/* Content */}
+                {/* Text */}
                 <div
-                  className={`space-y-6 ${index % 2 === 1 ? "lg:col-start-1" : ""}`}
+                  className={`space-y-6 animate-reveal ${
+                    index % 2 === 0 ? "slide-from-left" : "slide-from-right"
+                  } ${index % 2 === 1 ? "lg:col-start-1" : ""}`}
                 >
-                  <h2 className="text-3xl sm:text-4xl font-bold text-gray-900">
-                    <span style={{ color: "#004aad" }}>{service.title}</span>
+                  <h2 className="text-3xl font-bold text-gray-900">
+                    <span style={{ color: "#2A0A73" }}>{service.title}</span>
                   </h2>
                   <p className="text-lg text-gray-600 leading-relaxed">
                     {service.description}
@@ -136,6 +164,63 @@ const ServicesPage = () => {
       </section>
 
       <Footer />
+
+      {/* Animations */}
+      <style jsx>{`
+        .animate-reveal {
+          opacity: 0;
+          transform: translateY(40px);
+          transition: all 1s cubic-bezier(0.25, 1, 0.5, 1);
+        }
+        .animate-reveal.active {
+          opacity: 1;
+          transform: translateY(0);
+        }
+
+        /* Image Animations */
+        .zoom-in {
+          transform: scale(0.85);
+        }
+        .zoom-in.active {
+          transform: scale(1);
+        }
+
+        .float-in {
+          transform: translateY(50px);
+        }
+        .float-in.active {
+          transform: translateY(0);
+        }
+
+        .rotate-in {
+          transform: rotate(-5deg) scale(0.9);
+        }
+        .rotate-in.active {
+          transform: rotate(0) scale(1);
+        }
+
+        .fade-in {
+          opacity: 0;
+        }
+        .fade-in.active {
+          opacity: 1;
+        }
+
+        /* Text Animations */
+        .slide-from-left {
+          transform: translateX(-60px);
+        }
+        .slide-from-left.active {
+          transform: translateX(0);
+        }
+
+        .slide-from-right {
+          transform: translateX(60px);
+        }
+        .slide-from-right.active {
+          transform: translateX(0);
+        }
+      `}</style>
     </div>
   );
 };

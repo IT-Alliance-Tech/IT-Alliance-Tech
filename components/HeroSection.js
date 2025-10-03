@@ -82,7 +82,7 @@ const HeroSection = () => {
     <section className="hero-section">
       <canvas ref={canvasRef} className="hero-canvas" />
       <div className="hero-content">
-        <h1 className="text-5xl md:text-6xl font-bold text-white mb-6">
+        <h1 className="text-4xl md:text-6xl font-bold text-white mb-6">
           Empowering Your Business in the{" "}
           <span style={{ color: "#ffd700" }}>Digital Era</span>
         </h1>

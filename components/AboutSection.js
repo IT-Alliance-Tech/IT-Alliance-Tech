@@ -46,7 +46,7 @@ const AboutSection = () => {
           {/* Right - Text */}
           <div className="order-1 lg:order-2 reveal slide-left">
             <h2 className="text-4xl font-bold text-gray-900 mb-6">
-              About <span style={{ color: "#004aad" }}>Us</span>
+              About <span style={{ color: "#001a33" }}>Us</span>
             </h2>
             <p className="text-lg text-gray-600 mb-8 leading-relaxed">
               At IT Alliance Tech, we believe technology should empower
@@ -60,7 +60,7 @@ const AboutSection = () => {
             <Link
               href="/aboutUs"
               className="px-8 py-3 text-white font-semibold rounded-lg shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-200"
-              style={{ backgroundColor: "#004aad" }}
+              style={{ backgroundColor: "#001a33" }}
             >
               Read More
             </Link>

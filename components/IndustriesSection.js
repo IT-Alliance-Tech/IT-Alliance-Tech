@@ -65,7 +65,7 @@ const IndustriesSection = () => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-12">
           <h2 className="text-4xl font-bold text-gray-900 mb-4">
-            Industries <span style={{ color: "#004aad" }}>We Serve</span>
+            Industries <span style={{ color: "#001a33" }}>We Serve</span>
           </h2>
         </div>
 
@@ -74,7 +74,7 @@ const IndustriesSection = () => {
           <button
             onClick={scrollLeft}
             className="scroll-btn left-btn"
-            style={{ backgroundColor: "#004aad" }}
+            style={{ backgroundColor: "#001a33" }}
           >
             <RiArrowLeftLine size={24} className="text-white" />
           </button>
@@ -82,7 +82,7 @@ const IndustriesSection = () => {
           <button
             onClick={scrollRight}
             className="scroll-btn right-btn"
-            style={{ backgroundColor: "#004aad" }}
+            style={{ backgroundColor: "#001a33" }}
           >
             <RiArrowRightLine size={24} className="text-white" />
           </button>

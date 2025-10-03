@@ -91,7 +91,7 @@ const PricingSection = () => {
     <section className="pricing-section py-20 bg-gray-50">
       <div className="max-w-7xl mx-auto px-6 lg:px-8 text-center">
         <h2 className="text-4xl font-bold mb-6">
-          <span style={{ color: "#004aad" }}>WEBSITE & WEB APP PACKAGES</span>{" "}
+          <span style={{ color: "#001a33" }}>WEBSITE & WEB APP PACKAGES</span>{" "}
           (2025)
         </h2>
         <p className="text-xl text-gray-600 mb-12">

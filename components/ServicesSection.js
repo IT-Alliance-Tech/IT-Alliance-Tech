@@ -22,7 +22,7 @@ const ServicesSection = () => {
         {/* Heading */}
         <div className="text-center mb-16">
           <h2 className="text-4xl md:text-5xl font-bold text-gray-900 relative inline-block section-title">
-            <span style={{ color: "#004aad" }}>Services</span>
+            <span style={{ color: "#001a33" }}>Services</span>
           </h2>
           <p className="text-gray-600 mt-4 text-lg">
             Powering businesses with technology, growth, and creativity 🚀

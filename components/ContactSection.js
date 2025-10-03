@@ -37,7 +37,7 @@ const ContactSection = () => {
           <div className="animate-on-scroll fade-left">
             <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
               Get Your Business Into The{" "}
-              <span style={{ color: "#004aad" }}>Best</span>
+              <span style={{ color: "#001a33" }}>Best</span>
             </h2>
             <p className="text-xl text-gray-600 mb-8">
               Let's Create Business Empire
@@ -95,7 +95,7 @@ const ContactSection = () => {
               </div>
 
               {/* Submit Button */}
-              <button type="submit" className="contact-button">
+              <button type="submit" style={{backgroundColor: "#001a33"}} className="contact-button">
                 Send Query
               </button>
             </form>
