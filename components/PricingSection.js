@@ -88,7 +88,7 @@ const PricingSection = () => {
   }, []);
 
   return (
-    <section className="pricing-section py-20 bg-gray-50">
+    <section className="pricing-section py-20">
       <div className="max-w-7xl mx-auto px-6 lg:px-8 text-center">
         <h2 className="text-4xl font-bold mb-6">
           <span style={{ color: "#001a33" }}>WEBSITE & WEB APP PACKAGES</span>{" "}
@@ -102,7 +102,7 @@ const PricingSection = () => {
           {packages.map((pkg, index) => (
             <div
               key={index}
-              className="pricing-card rounded-xl shadow-lg p-6 flex flex-col justify-between"
+              className="pricing-card rounded-xl shadow-lg p-6 flex flex-col justify-between  bg-gray-50"
               style={{ borderTop: `6px solid ${pkg.color}` }}
             >
               <h3 className="text-2xl font-bold mb-4">{pkg.name}</h3>

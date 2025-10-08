@@ -1,22 +1,71 @@
 /* Smooth fade + float for cards */
+/* Keep your existing .service-card base styles, but remove opacity/transform initially */
 .service-card {
   background: white;
   border-radius: 16px;
   padding: 1.5rem;
+  padding-top: 3rem;
   text-align: center;
   box-shadow: 0 8px 20px rgba(0, 74, 173, 0.08);
   transition: transform 0.4s ease, box-shadow 0.4s ease;
   cursor: pointer;
   position: relative;
   overflow: hidden;
-  opacity: 0;
-  transform: translateY(40px);
 }
 
+/* Hover effect */
 .service-card:hover {
-  transform: translateY(-8px) scale(10.03);
+  transform: translateY(-6px);
   box-shadow: 0 12px 30px rgba(0, 74, 173, 0.15);
 }
+
+/* Grid spacing and visibility */
+.services-grid {
+  display: grid;
+  gap: 1.5rem;
+}
+
+/* Animations */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: scale(0.98);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(40px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fadeIn {
+  animation: fadeIn 0.5s ease forwards;
+}
+
+.animate-slideUp {
+  animation: slideUp 0.5s ease forwards;
+}
+
+
+/* Utility classes */
+.animate-fadeIn {
+  animation: fadeIn 0.5s ease forwards;
+}
+
+.animate-slideUp {
+  animation: slideUp 0.5s ease forwards;
+}
+
 
 /* Circle accent animation */
 .icon-circle {

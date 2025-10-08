@@ -4,6 +4,7 @@ import Image from 'next/image';
 
 // ✅ Import your logo (place logo.png in assets/images folder)
 import logoImg from "../assets/images/it1.png";
+import Link from 'next/link';
 
 const Footer = () => {
   const services = [
@@ -28,15 +29,15 @@ const Footer = () => {
           
           {/* Logo and Contact Info */}
           <div className="col-span-1">
-            <div className="mb-4">
+            <Link href={`/`} className="flex-shrink-0">
               <Image
                 src={logoImg}
                 alt="IT Alliance Logo"
-                className="h-16 w-auto object-contain"
+                className="h-20 w-auto object-contain rounded-2xl"
                 priority
               />
-            </div>
-            <div className="space-y-3">
+            </Link>
+            <div className="space-y-3 mt-4">
               <a
                 href="mailto:contact@italliance.tech"
                 className="flex flex-wrap items-center gap-2 hover:text-blue-400 transition-colors duration-200"
