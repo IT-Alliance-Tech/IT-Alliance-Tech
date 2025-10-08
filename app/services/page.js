@@ -1,8 +1,6 @@
 "use client";
 
 import React, { useEffect } from "react";
-import Navbar from "@/components/Navbar";
-import Footer from "@/components/Footer";
 import Image from "next/image";
 
 // ✅ Import service images
@@ -101,14 +99,14 @@ const ServicesPage = () => {
 
   return (
     <div className="min-h-screen">
-      <Navbar />
-
       {/* Hero */}
       <section className="relative pt-20 pb-16 bg-gradient-to-br from-indigo-700 to-purple-800 text-white">
         <div className="absolute inset-0 bg-black opacity-40"></div>
         <div className="relative max-w-7xl mx-auto px-6 text-center">
           <h1 className="text-5xl font-bold mb-4">Our Services</h1>
-          <p className="text-xl text-blue-100">Empowering Your Digital Growth</p>
+          <p className="text-xl text-blue-100">
+            Empowering Your Digital Growth
+          </p>
         </div>
       </section>
 
@@ -162,8 +160,6 @@ const ServicesPage = () => {
           </div>
         </div>
       </section>
-
-      <Footer />
 
       {/* Animations */}
       <style jsx>{`

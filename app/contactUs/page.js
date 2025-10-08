@@ -1,8 +1,6 @@
 "use client";
 
 import React, { useState, useEffect } from "react";
-import Navbar from "@/components/Navbar";
-import Footer from "@/components/Footer";
 import Image from "next/image";
 import aboutImg from "../../assets/images/contactUs.png";
 import {
@@ -74,8 +72,6 @@ const ContactPage = () => {
 
   return (
     <div className="min-h-screen">
-      <Navbar />
-
       {/* Hero Section */}
       <section
         className={`relative pt-20 pb-16 bg-gradient-to-br from-blue-600 to-blue-800 text-white transition-opacity duration-1000 ${
@@ -244,8 +240,6 @@ const ContactPage = () => {
           </div>
         </div>
       </section>
-
-      <Footer />
     </div>
   );
 };

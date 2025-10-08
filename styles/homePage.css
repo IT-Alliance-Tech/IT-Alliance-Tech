@@ -39,3 +39,46 @@
   transform: translateY(-3px) scale(1.05);
   box-shadow: 0 12px 30px rgba(255, 215, 0, 0.6);
 }
+
+.bgImgSection1 {
+  background-image: url("../assets/images/10-removebg-preview.png");
+  background-size: auto;
+  background-repeat: no-repeat;
+  background-position: 110% 70%;
+}
+.bgImgSection2 {
+  background-image: url("../assets/images/9-removebg-preview.png");
+  background-size: auto;
+  background-repeat: no-repeat;
+  background-position: -10% 75%;
+}
+.bgImgSection2a {
+  background-image: url("../assets/images/10-removebg-preview.png");
+  background-size: auto;
+  background-repeat: no-repeat;
+  background-position: 110% -2000%;
+}
+.bgImgSection2b {
+  background-image: url("../assets/images/1-removebg-preview.png");
+  background-size: auto;
+  background-repeat: no-repeat;
+  background-position: 110% -20%;
+}
+.bgImgSection2a {
+  background-image: url("../assets/images/10-removebg-preview.png");
+  background-size: auto;
+  background-repeat: no-repeat;
+  background-position: 110% -2000%;
+}
+.bgImgSection3 {
+  background-image: url("../assets/images/5-removebg-preview.png");
+  background-size: auto;
+  background-repeat: no-repeat;
+  background-position: 110% -5%;
+}
+.bgImgSection4 {
+  background-image: url("../assets/images/2-removebg-preview.png");
+  background-size: auto;
+  background-repeat: no-repeat;
+  background-position: -10% 150%;
+}

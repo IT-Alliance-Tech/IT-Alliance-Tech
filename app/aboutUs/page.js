@@ -1,7 +1,5 @@
 "use client";
 import React, { useEffect } from "react";
-import Navbar from "@/components/Navbar";
-import Footer from "@/components/Footer";
 import Image from "next/image";
 import aboutImg from "../../assets/images/aboutUs2.png";
 
@@ -31,8 +29,6 @@ const AboutPage = () => {
 
   return (
     <div className="min-h-screen">
-      <Navbar />
-
       {/* Hero Section */}
       <section className="relative pt-20 pb-16 bg-gradient-to-br from-[#6A4DFF] to-indigo-900 text-white overflow-hidden">
         <div className="absolute inset-0 bg-black opacity-40"></div>
@@ -121,8 +117,6 @@ const AboutPage = () => {
           </div>
         </div>
       </section>
-
-      <Footer />
 
       {/* 👇 Inline styles for animations */}
       <style jsx>{`
