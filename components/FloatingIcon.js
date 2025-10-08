@@ -5,6 +5,7 @@ import {
   FaFacebookF,
   FaInstagram,
   FaXTwitter,
+  FaLinkedinIn,
 } from "react-icons/fa6";
 import { IoIosArrowUp, IoIosArrowDown } from "react-icons/io";
 
@@ -14,18 +15,23 @@ const FloatingIcon = () => {
   const socialLinks = [
     {
       icon: <FaWhatsapp />,
-      href: "https://wa.me/your-number",
+      href: "https://wa.me/919663265984",
       color: "bg-green-500",
     },
     {
       icon: <FaFacebookF />,
-      href: "https://facebook.com/yourpage",
+      href: "https://www.facebook.com/ITalliancetechbnglr/",
       color: "bg-blue-600",
     },
     {
       icon: <FaInstagram />,
-      href: "https://instagram.com/yourpage",
+      href: "https://www.instagram.com/italliancetech/",
       color: "bg-pink-500",
+    },
+    {
+      icon: <FaLinkedinIn />,
+      href: "https://www.linkedin.com/company/italliance-tech/",
+      color: "bg-blue-700",
     },
     // { icon: <FaXTwitter />, href: "https://x.com/yourpage", color: "bg-gray-800" },
   ];
