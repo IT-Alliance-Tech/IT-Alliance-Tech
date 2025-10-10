@@ -1,0 +1,28 @@
+.path-draw {
+  stroke-dasharray: 1000; /* large enough to cover path */
+  stroke-dashoffset: 1000;
+  animation: drawPath 1.2s forwards ease-out;
+  animation-delay: 0.5s;
+}
+
+@keyframes drawPath {
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+/* fade-up animation for each step */
+@keyframes fadeUp {
+  0% {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fadeUp {
+  animation: fadeUp 0.8s ease-out;
+}

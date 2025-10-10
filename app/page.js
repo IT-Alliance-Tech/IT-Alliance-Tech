@@ -5,6 +5,7 @@ import IndustriesSection from "../components/IndustriesSection";
 import ServicesSection from "../components/ServicesSection";
 import PricingSection from "../components/PricingSection";
 import ContactSection from "../components/ContactSection";
+import ProcessSection from "../components/ProcessSection";
 import "../styles/homePage.css";
 
 export default function Home() {
@@ -24,6 +25,7 @@ export default function Home() {
         <div className="bgImgSection2b">
           <ServicesSection />
         </div>
+        <ProcessSection />
       </div>
       <div className="bgImgSection3 ">
         <div className="bgImgSection4">
