@@ -10,62 +10,54 @@ import {
 } from "lucide-react";
 import "../styles/processSection.css";
 
-/*
-  Two-column responsive process with exact SVG connectors.
-  - Grid: md => 2 columns, mobile => 1 column
-  - Diamond centers are measured and an SVG path is built connecting them in sequence.
-  - Use Tailwind CSS classes.
-*/
-
 const steps = [
   {
     id: 1,
     title: "DISCOVERY & CONSULTATION",
-    desc: "We begin by understanding your needs, budget, and vision through meetings and site visits.",
+    desc: "We start by understanding your vision, audience, and challenges — setting a clear success path.",
     icon: <Users className="w-6 h-6 text-white" />,
   },
   {
     id: 2,
-    title: "DESIGN & PROPOSAL",
-    desc: "Our design team creates concepts, layouts, and material selections tailored to your requirements.",
+    title: "STRATEGY & PLANNING",
+    desc: "Our experts craft a custom roadmap combining technology, creativity, and timelines that deliver.",
     icon: <Layout className="w-6 h-6 text-white" />,
   },
   {
     id: 3,
-    title: "APPROVAL & PLANNING",
-    desc: "Once the design is finalized, we prepare detailed drawings, timelines, and costings for your approval.",
+    title: "DESIGN & DEVELOPMENT",
+    desc: "Our design and tech teams collaborate to create stunning visuals and high-performing systems.",
     icon: <CalendarDays className="w-6 h-6 text-white" />,
   },
   {
     id: 4,
-    title: "MANUFACTURING & PROCUREMENT",
-    desc: "Using our in-house facilities and trusted partners, we produce high-quality furniture and source materials.",
+    title: "TESTING & REFINEMENT",
+    desc: "We test everything — speed, responsiveness, UI/UX — ensuring a flawless user experience.",
     icon: <Package className="w-6 h-6 text-white" />,
   },
   {
     id: 5,
-    title: "EXECUTION & INSTALLATION",
-    desc: "Our skilled team manages the entire fit-out process — from construction to installation — ensuring quality and timely delivery.",
+    title: "LAUNCH & INTEGRATION",
+    desc: "Your project goes live with full transparency, documentation, and technical handover.",
     icon: <Wrench className="w-6 h-6 text-white" />,
   },
   {
     id: 6,
-    title: "HANDOVER & AFTERCARE",
-    desc: "We hand over your completed space, provide warranties, and remain available for ongoing maintenance and support.",
+    title: "ONGOING SUPPORT & GROWTH",
+    desc: "We stay with you beyond launch — optimizing, scaling, and adapting as your business grows.",
     icon: <Handshake className="w-6 h-6 text-white" />,
   },
 ];
 
 export default function ProcessSection() {
   const containerRef = useRef(null);
-  const diamondRefs = useRef([]); // element refs for diamonds
+  const diamondRefs = useRef([]);
   const rafRef = useRef(null);
   const roRef = useRef(null);
   const pathRef = useRef(null);
 
   const [svgProps, setSvgProps] = useState({ w: 0, h: 0, d: "" });
 
-  // compute path from diamond centers
   const computePath = () => {
     const container = containerRef.current;
     if (!container) return;
@@ -73,12 +65,10 @@ export default function ProcessSection() {
     const bbox = container.getBoundingClientRect();
     const points = [];
 
-    // gather center points (only for existing elements)
     for (let i = 0; i < steps.length; i++) {
       const el = diamondRefs.current[i];
       if (!el) continue;
       const r = el.getBoundingClientRect();
-      // Ignore elements with 0 size (not rendered)
       if (r.width === 0 && r.height === 0) continue;
       points.push({
         x: r.left + r.width / 2 - bbox.left,
@@ -94,7 +84,6 @@ export default function ProcessSection() {
       return;
     }
 
-    // Build smooth path: for each pair p0->p1 use cubic bezier with horizontal control midpoints
     let d = `M ${points[0].x} ${points[0].y}`;
     for (let i = 1; i < points.length; i++) {
       const p0 = points[i - 1];
@@ -102,15 +91,9 @@ export default function ProcessSection() {
       const dx = p1.x - p0.x;
       const dy = p1.y - p0.y;
 
-      // Default midpoint horizontally
       let midX = p0.x + dx * 0.5;
-
-      // Choose control points. If horizontal distance is small, push controls horizontally outward
-      // to create a smooth vertical S-like curve instead of a tiny squiggle.
-      let offset = Math.min(Math.abs(dx) * 0.4, 140); // cap offset
+      let offset = Math.min(Math.abs(dx) * 0.4, 140);
       if (Math.abs(dx) < 40) {
-        // small horizontal difference -> make a wider horizontal control so curve looks nice
-        // If next element is mostly below, offset direction depends on column (left/right)
         const direction = dx >= 0 ? 1 : -1;
         const cp1x = p0.x + direction * offset;
         const cp2x = p1.x - direction * offset;
@@ -130,28 +113,22 @@ export default function ProcessSection() {
   };
 
   useEffect(() => {
-    // throttle compute with rAF
     const schedule = () => {
       if (rafRef.current) cancelAnimationFrame(rafRef.current);
       rafRef.current = requestAnimationFrame(() => computePath());
     };
 
-    // initial
     schedule();
 
-    // ResizeObserver on container to detect layout changes (e.g., text wrapping)
     try {
       roRef.current = new ResizeObserver(() => schedule());
       if (containerRef.current) roRef.current.observe(containerRef.current);
     } catch (e) {
-      // Ignore if not supported
       window.addEventListener("resize", schedule);
     }
 
-    // also recalc on window resize (fallback)
     window.addEventListener("resize", schedule);
 
-    // small timeout after fonts load
     const t = setTimeout(schedule, 120);
 
     return () => {
@@ -160,7 +137,6 @@ export default function ProcessSection() {
       window.removeEventListener("resize", schedule);
       clearTimeout(t);
     };
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   useEffect(() => {
@@ -169,7 +145,6 @@ export default function ProcessSection() {
       pathRef.current.style.strokeDasharray = pathLength;
       pathRef.current.style.strokeDashoffset = pathLength;
       pathRef.current.style.transition = "stroke-dashoffset 1.2s ease-out 0.5s";
-      // trigger draw
       requestAnimationFrame(() => {
         pathRef.current.style.strokeDashoffset = "0";
       });
@@ -179,7 +154,6 @@ export default function ProcessSection() {
   return (
     <section className="bg-white py-12 px-4 md:px-8">
       <div className="max-w-6xl mx-auto relative" ref={containerRef}>
-        {/* SVG behind content */}
         {svgProps.d && (
           <svg
             width={svgProps.w}
@@ -208,11 +182,10 @@ export default function ProcessSection() {
             OUR PROCESS
           </h2>
           <p className="text-gray-600 mt-2">
-            A clear and seamless journey from idea to completion.
+            We follow a 6-step structured approach that ensures every project delivers measurable results.
           </p>
         </div>
 
-        {/* 2-column grid on md+, 1-column on mobile */}
         <div
           className="grid grid-cols-1 md:grid-cols-2 gap-x-10 gap-y-16 flex-col items-center"
           style={{ zIndex: 999 }}
@@ -226,7 +199,6 @@ export default function ProcessSection() {
                 animationFillMode: "forwards",
               }}
             >
-              {/* Diamond & number */}
               <div className="relative">
                 <div
                   ref={(el) => (diamondRefs.current[i] = el)}
@@ -240,7 +212,6 @@ export default function ProcessSection() {
                 </div>
               </div>
 
-              {/* Text */}
               <div
                 className="mt-4 max-w-md bg-white"
                 style={{ maxWidth: "320px", zIndex: 999 }}
@@ -257,7 +228,6 @@ export default function ProcessSection() {
         </div>
       </div>
 
-      {/* mobile vertical connector (fallback) */}
       <div className="md:hidden" style={{ zIndex: 99 }}>
         <div
           className="absolute left-1/2 transform -translate-x-1/2 top-[220px] bottom-8 w-[2px] bg-emerald-100 pointer-events-none"

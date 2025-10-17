@@ -1,19 +1,21 @@
 /* Base hidden state */
 .industry-card {
   opacity: 0;
-  transform: translateY(40px) scale(0.95);
+  transform: translateY(40px) scale(0.9); /* start slightly smaller */
   transition: all 0.8s ease;
+  will-change: transform, opacity;
 }
 
-/* Active reveal */
+/* Active reveal (zoom/fade-in) */
 .industry-card.active {
   opacity: 1;
   transform: translateY(0) scale(1);
+  animation: zoomIn 0.7s ease forwards;
 }
 
-/* Hover effect */
+/* Hover effect (subtle zoom & tilt) */
 .industry-card:hover {
-  transform: scale(1.05) rotate3d(1, 1, 0, 4deg);
+  transform: translateY(-5px) scale(1.05) rotate3d(0.1, 0.1, 0, 2deg);
   box-shadow: 0 12px 24px rgba(0, 74, 173, 0.2);
   transition: all 0.4s ease;
 }
@@ -27,7 +29,7 @@
   padding: 12px;
   border-radius: 50%;
   box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
-  animation: bounce 2s infinite;
+  animation: bounce 2s infinite ease-in-out;
   transition: all 0.3s ease;
 }
 
@@ -35,19 +37,27 @@
   transform: translateY(-50%) scale(1.1);
 }
 
-.left-btn {
-  left: 0;
-}
+.left-btn { left: 0; }
+.right-btn { right: 0; }
 
-.right-btn {
-  right: 0;
-}
-
-@keyframes bounce {
-  0%, 100% {
-    transform: translateY(-50%) scale(1);
+/* Zoom-in entry animation */
+@keyframes zoomIn {
+  0% {
+    opacity: 0;
+    transform: translateY(40px) scale(0.9);
   }
   50% {
-    transform: translateY(-55%) scale(1.05);
+    opacity: 1;
+    transform: translateY(-5px) scale(1.03);
   }
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+/* Bounce keyframes for scroll buttons */
+@keyframes bounce {
+  0%, 100% { transform: translateY(-50%) scale(1); }
+  50% { transform: translateY(-55%) scale(1.05); }
 }
