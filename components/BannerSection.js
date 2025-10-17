@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useEffect } from "react";
-import "../styles/bannerSection.css"; // ✅ new CSS file
+import "../styles/bannerSection.css";
 
 const BannerSection = () => {
   useEffect(() => {
@@ -32,19 +32,19 @@ const BannerSection = () => {
       <div className="shape shape2"></div>
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-        {/* Headline */}
+        {/* ✅ Headline adjusted into three lines */}
         <h2 className="reveal fade-shimmer text-3xl md:text-4xl lg:text-5xl font-bold leading-tight bg-clip-text text-transparent bg-gradient-to-r from-yellow-400 via-pink-500 to-purple-600">
-          Transform your business with our expert digital marketing, <br />
-          flexible staffing services, and custom web solutions.
+          To create a world where technology <br />
+          and business strategy work hand in hand, <br />
+          helping organizations operate smarter, scale faster, and connect globally.
         </h2>
 
-        {/* Description */}
+        {/* ✅ Description remains unchanged */}
         <p className="reveal fade-up mt-6 text-lg md:text-xl text-white/80">
-          Take your business to the next level with our tailored solutions and
-          creative strategies.
+          Take your business to the next level with our tailored solutions and creative strategies.
         </p>
 
-        {/* Button */}
+        {/* ✅ Button remains unchanged */}
         <div className="reveal bounce-in mt-8 flex justify-center">
           <button className="px-6 py-3 bg-yellow-400 hover:bg-yellow-500 text-blue-900 font-semibold rounded-lg shadow-lg transform transition-transform hover:scale-105">
             Get Started
