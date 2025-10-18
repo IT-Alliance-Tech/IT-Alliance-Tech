@@ -34,9 +34,7 @@ const BannerSection = () => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
         {/* ✅ Headline adjusted into three lines */}
         <h2 className="reveal fade-shimmer text-3xl md:text-4xl lg:text-5xl font-bold leading-tight bg-clip-text text-transparent bg-gradient-to-r from-yellow-400 via-pink-500 to-purple-600">
-          To create a world where technology <br />
-          and business strategy work hand in hand, <br />
-          helping organizations operate smarter, scale faster, and connect globally.
+          Transform your business with our expert digital marketing, <br /> flexible staffing services, and custom web solutions.
         </h2>
 
         {/* ✅ Description remains unchanged */}

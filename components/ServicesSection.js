@@ -54,7 +54,6 @@ const ServicesSection = () => {
         "Skilled professionals who integrate seamlessly into your workflow — on-demand, full-time, or project-based.",
       image: mspImg,
     },
-    // Keep the remaining services unchanged
     {
       title: "Graphics & Media Pricing",
       description:
@@ -93,7 +92,7 @@ const ServicesSection = () => {
     <section id="services" className="py-20 bg-gray-100 relative overflow-hidden">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Heading */}
-        <div className="text-center mb-16">
+        <div className="text-center mb-16 animate-fadeUp">
           <h2 className="text-4xl md:text-5xl font-bold text-[#001a33]">
             Services
           </h2>
@@ -121,15 +120,17 @@ const ServicesSection = () => {
                 {col.map((service, index) => (
                   <div
                     key={index}
-                    className="
+                    className={`
                       group bg-[#001a33] text-white 
                       rounded-3xl shadow-lg 
                       p-6 flex flex-col items-center text-center justify-center
                       hover:-translate-y-2 hover:shadow-2xl 
                       transition-all duration-500 
                       h-full
-                    "
+                      animate-fadeUp
+                    `}
                     style={{
+                      animationDelay: `${(colIndex * 3 + index) * 150}ms`,
                       minHeight:
                         colIndex % 2 === 0
                           ? index % 2 === 0
@@ -140,16 +141,14 @@ const ServicesSection = () => {
                           : "220px",
                     }}
                   >
-                    <div className="w-20 h-20 rounded-full bg-gray-100 flex items-center justify-center mb-4 group-hover:bg-white transition-all duration-300">
+                    <div className="w-20 h-20 rounded-full bg-gray-100 flex items-center justify-center mb-4 group-hover:bg-white transition-all duration-300 animate-scaleUp">
                       <Image
                         src={service.image}
                         alt={service.title}
                         className="w-12 h-12 object-cover"
                       />
                     </div>
-                    <h3 className="text-lg font-semibold mb-3">
-                      {service.title}
-                    </h3>
+                    <h3 className="text-lg font-semibold mb-3">{service.title}</h3>
                     <button
                       onClick={() => setSelectedService(service)}
                       className="text-orange-400 font-semibold transition-all duration-300 hover:underline"
@@ -163,7 +162,7 @@ const ServicesSection = () => {
           </div>
         ) : (
           // Detail View
-          <div className="animate-slideUp bg-[#001a33] rounded-3xl shadow-2xl p-8 max-w-3xl mx-auto border border-gray-200 relative text-white">
+          <div className="animate-slideUpFade bg-[#001a33] rounded-3xl shadow-2xl p-8 max-w-3xl mx-auto border border-gray-200 relative text-white">
             <button
               onClick={() => setSelectedService(null)}
               className="absolute top-4 right-6 text-orange-500 hover:text-red-500 text-3xl font-bold transition-all"
@@ -191,6 +190,39 @@ const ServicesSection = () => {
           </div>
         )}
       </div>
+
+      {/* Animations CSS */}
+      <style jsx>{`
+        .animate-fadeUp {
+          opacity: 0;
+          transform: translateY(30px);
+          animation: fadeUp 0.8s ease-out forwards;
+        }
+        @keyframes fadeUp {
+          0% { opacity: 0; transform: translateY(30px); }
+          100% { opacity: 1; transform: translateY(0); }
+        }
+
+        .animate-scaleUp {
+          transform: scale(0);
+          animation: scaleUp 0.6s ease-out forwards;
+        }
+        @keyframes scaleUp {
+          0% { transform: scale(0); }
+          60% { transform: scale(1.1); }
+          100% { transform: scale(1); }
+        }
+
+        .animate-slideUpFade {
+          opacity: 0;
+          transform: translateY(50px);
+          animation: slideUpFade 0.6s ease-out forwards;
+        }
+        @keyframes slideUpFade {
+          0% { opacity: 0; transform: translateY(50px); }
+          100% { opacity: 1; transform: translateY(0); }
+        }
+      `}</style>
     </section>
   );
 };

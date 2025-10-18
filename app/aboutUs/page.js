@@ -30,7 +30,10 @@ const AboutPage = () => {
   return (
     <div className="min-h-screen">
       {/* Hero Section */}
-      <section className="relative pt-20 pb-16 bg-gradient-to-br from-[#6A4DFF] to-indigo-900 text-white overflow-hidden">
+      <section
+        className={`relative pt-20 pb-16 text-white overflow-hidden`}
+        style={{ backgroundColor: "#001a33" }} // same color as contact
+      >
         <div className="absolute inset-0 bg-black opacity-40"></div>
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center reveal">
           <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold">
@@ -50,24 +53,23 @@ const AboutPage = () => {
               priority
             />
           </div>
+
           <h2 className="text-4xl font-bold text-gray-900 mb-8 slide-right">
             <span style={{ color: "#001a33" }}>About Us</span>
             <div className="text-xl font-normal mt-6 text-gray-700 leading-relaxed">
-              At IT Alliance Tech, we believe technology should empower
-              businesses to grow smarter, faster, and stronger. Our mission is
-              simple to deliver reliable, customized IT and digital solutions
-              that help companies stand out in today’s competitive world. From
-              web development and applications to digital marketing and
-              consulting, we combine creativity with technical expertise to
-              build solutions that drive measurable results. <br />
+              Established in 2021, <strong>IT Alliance Tech</strong> was born
+              from a belief that every idea — big or small — deserves a digital
+              foundation strong enough to last. <br />
               <br />
-              What makes us different is our people-first approach. We don’t
-              just deliver projects — we build partnerships. By understanding
-              your goals and challenges, we craft strategies tailored to your
-              business needs, ensuring long-term growth and success. With a team
-              that values innovation, trust, and collaboration, IT Alliance Tech
-              is your partner in turning digital opportunities into real
-              business impact.
+              We’ve spent years helping startups, small businesses, and
+              enterprises set up their entire ecosystem — from registration to
+              growth — ensuring they have the right technology, digital
+              presence, and brand identity. <br />
+              <br />
+              Our focus goes beyond project delivery — we build long-term
+              partnerships that grow with our clients’ success. Because
+              technology evolves fast, and we make sure your business evolves
+              faster.
             </div>
           </h2>
         </div>
@@ -83,6 +85,7 @@ const AboutPage = () => {
           </div>
 
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
+            {/* Mission */}
             <div className="bg-white p-8 rounded-2xl shadow-lg slide-left">
               <h3
                 className="text-2xl font-bold mb-6"
@@ -93,12 +96,11 @@ const AboutPage = () => {
               <p className="text-lg text-gray-600 leading-relaxed">
                 To empower businesses with innovative digital solutions that are
                 reliable, scalable, and user-friendly. By combining creativity,
-                technology, and strategy, we simplify processes, enhance
-                visibility, and deliver measurable results while building
-                lasting partnerships that drive meaningful growth and success.
+                technology, and strategy, we simplify processes.
               </p>
             </div>
 
+            {/* Vision */}
             <div className="bg-white p-8 rounded-2xl shadow-lg slide-right">
               <h3
                 className="text-2xl font-bold mb-6"
@@ -107,11 +109,9 @@ const AboutPage = () => {
                 Our Vision
               </h3>
               <p className="text-lg text-gray-600 leading-relaxed">
-                To become a trusted global technology partner, recognized for
-                transforming ideas into impactful digital solutions. We strive
-                to create a future where businesses of all sizes harness
-                technology to achieve sustainable growth, long-term success, and
-                meaningful connections with their customers.
+                To create a world where technology and business strategy work
+                hand in hand, helping organizations operate smarter, scale
+                faster, and connect globally.
               </p>
             </div>
           </div>
