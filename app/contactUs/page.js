@@ -74,9 +74,10 @@ const ContactPage = () => {
     <div className="min-h-screen">
       {/* Hero Section */}
       <section
-        className={`relative pt-20 pb-16 bg-gradient-to-br from-blue-600 to-blue-800 text-white transition-opacity duration-1000 ${
+        className={`relative pt-20 pb-16 text-white transition-opacity duration-1000 ${
           animate ? "opacity-100" : "opacity-0"
         }`}
+        style={{ backgroundColor: "#001a33" }} // banner color same as button
       >
         <div className="absolute inset-0 bg-black opacity-50"></div>
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">

@@ -19,40 +19,46 @@ const ServicesSection = () => {
 
   const services = [
     {
-      title: "MSP Solutions",
+      title: "Website & Web Applications",
       description:
-        "Comprehensive Managed Service Provider solutions that streamline your IT operations. We provide 24/7 monitoring, maintenance, and support for your entire IT infrastructure, ensuring maximum uptime and optimal performance. Our proactive approach prevents issues before they impact your business, allowing you to focus on growth while we handle the technology.",
-      image: mspImg,
+        "Modern, secure, and conversion-driven websites that define your digital presence. Custom web apps built to automate, simplify, and accelerate your business operations.",
+      image: websiteWebAppImg,
     },
     {
-      title: "AI Chatbot Marketing",
+      title: "E-commerce Solutions",
       description:
-        "Revolutionary AI-powered chatbot solutions that transform customer engagement and drive sales. Our intelligent chatbots provide instant customer support, qualify leads, and guide prospects through your sales funnel 24/7. Increase conversion rates, reduce response times, and deliver personalized experiences that keep customers coming back.",
-      image: aiChatbotImg,
-    },
-    {
-      title: "Digital Growth Packages",
-      description:
-        "Complete digital transformation packages designed to accelerate your business growth. Our comprehensive approach includes website optimization, social media management, content marketing, and performance analytics. We create integrated strategies that build brand awareness, generate quality leads, and maximize your return on investment.",
+        "End-to-end e-commerce platforms designed to convert visitors into loyal buyers. Seamless checkout, smart product displays, and intuitive management dashboards.",
       image: digitalGrowthImg,
     },
     {
-      title: "Digital Marketing",
+      title: "Business Software & CRM Solutions",
       description:
-        "Strategic digital marketing campaigns that amplify your brand presence and drive measurable results. From SEO and PPC advertising to social media marketing and email campaigns, we create data-driven strategies that reach your target audience at the right time with the right message, maximizing engagement and conversions.",
+        "We build custom CRM, ERP, and workflow automation tools to streamline your internal operations and improve decision-making.",
+      image: hostingImg,
+    },
+    {
+      title: "Digital Marketing & Branding",
+      description:
+        "Performance-focused strategies — from social media and SEO to paid campaigns — to turn attention into action.",
       image: digitalMarketingImg,
+    },
+    {
+      title: "WhatsApp CRM & Business Automation",
+      description:
+        "Build instant engagement with customers through automated responses, follow-ups, and lead tracking. Your complete sales process simplified — from inquiry to closure.",
+      image: aiChatbotImg,
+    },
+    {
+      title: "Resource Staffing & Tech Support",
+      description:
+        "Skilled professionals who integrate seamlessly into your workflow — on-demand, full-time, or project-based.",
+      image: mspImg,
     },
     {
       title: "Graphics & Media Pricing",
       description:
         "Professional graphic design and multimedia services that bring your brand vision to life. Our creative team delivers stunning visuals, engaging videos, and compelling content that captures attention and communicates your message effectively. From logos and branding to marketing materials and digital assets, we create designs that make an impact.",
       image: graphicsImg,
-    },
-    {
-      title: "Hosting & Cloud",
-      description:
-        "Reliable, secure, and scalable hosting and cloud solutions that keep your business running smoothly. Our infrastructure services include web hosting, cloud migration, data backup, and disaster recovery. We ensure your applications and data are always accessible, protected, and performing at peak efficiency with 99.9% uptime guarantee.",
-      image: hostingImg,
     },
     {
       title: "Payment Gateway",
@@ -67,19 +73,12 @@ const ServicesSection = () => {
       image: smallComboImg,
     },
     {
-      title: "Website and Web App Pricing",
-      description:
-        "Custom website and web application development services that deliver exceptional user experiences. From responsive websites to complex web applications, we build scalable, secure, and user-friendly solutions. Our development process includes modern frameworks, mobile optimization, and ongoing maintenance to ensure your digital platform evolves with your business.",
-      image: websiteWebAppImg,
-    },
-    {
       title: "YouTube Marketing",
       description:
         "Comprehensive YouTube marketing strategies that grow your channel and engage your audience. We handle everything from content creation and optimization to audience analysis and monetization strategies. Build a strong video presence, increase subscribers, and turn viewers into customers with our proven YouTube marketing techniques.",
       image: youtubeMarketingImg,
     },
   ];
-
 
   // Split cards into 4 uneven columns
   const columns = [
@@ -93,12 +92,12 @@ const ServicesSection = () => {
     <section id="services" className="py-20 bg-gray-100 relative overflow-hidden">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Heading */}
-        <div className="text-center mb-16">
+        <div className="text-center mb-16 animate-fadeUp">
           <h2 className="text-4xl md:text-5xl font-bold text-[#001a33]">
             Services
           </h2>
           <p className="text-gray-600 mt-4 text-lg">
-            Powering businesses with technology, growth, and creativity 🚀
+            Every business has a story. We help you tell it — beautifully, powerfully, and digitally.
           </p>
         </div>
 
@@ -121,15 +120,17 @@ const ServicesSection = () => {
                 {col.map((service, index) => (
                   <div
                     key={index}
-                    className="
+                    className={`
                       group bg-[#001a33] text-white 
                       rounded-3xl shadow-lg 
                       p-6 flex flex-col items-center text-center justify-center
                       hover:-translate-y-2 hover:shadow-2xl 
                       transition-all duration-500 
                       h-full
-                    "
+                      animate-fadeUp
+                    `}
                     style={{
+                      animationDelay: `${(colIndex * 3 + index) * 150}ms`,
                       minHeight:
                         colIndex % 2 === 0
                           ? index % 2 === 0
@@ -140,16 +141,14 @@ const ServicesSection = () => {
                           : "220px",
                     }}
                   >
-                    <div className="w-20 h-20 rounded-full bg-gray-100 flex items-center justify-center mb-4 group-hover:bg-white transition-all duration-300">
+                    <div className="w-20 h-20 rounded-full bg-gray-100 flex items-center justify-center mb-4 group-hover:bg-white transition-all duration-300 animate-scaleUp">
                       <Image
                         src={service.image}
                         alt={service.title}
                         className="w-12 h-12 object-cover"
                       />
                     </div>
-                    <h3 className="text-lg font-semibold mb-3">
-                      {service.title}
-                    </h3>
+                    <h3 className="text-lg font-semibold mb-3">{service.title}</h3>
                     <button
                       onClick={() => setSelectedService(service)}
                       className="text-orange-400 font-semibold transition-all duration-300 hover:underline"
@@ -163,7 +162,7 @@ const ServicesSection = () => {
           </div>
         ) : (
           // Detail View
-          <div className="animate-slideUp bg-[#001a33] rounded-3xl shadow-2xl p-8 max-w-3xl mx-auto border border-gray-200 relative text-white">
+          <div className="animate-slideUpFade bg-[#001a33] rounded-3xl shadow-2xl p-8 max-w-3xl mx-auto border border-gray-200 relative text-white">
             <button
               onClick={() => setSelectedService(null)}
               className="absolute top-4 right-6 text-orange-500 hover:text-red-500 text-3xl font-bold transition-all"
@@ -191,6 +190,39 @@ const ServicesSection = () => {
           </div>
         )}
       </div>
+
+      {/* Animations CSS */}
+      <style jsx>{`
+        .animate-fadeUp {
+          opacity: 0;
+          transform: translateY(30px);
+          animation: fadeUp 0.8s ease-out forwards;
+        }
+        @keyframes fadeUp {
+          0% { opacity: 0; transform: translateY(30px); }
+          100% { opacity: 1; transform: translateY(0); }
+        }
+
+        .animate-scaleUp {
+          transform: scale(0);
+          animation: scaleUp 0.6s ease-out forwards;
+        }
+        @keyframes scaleUp {
+          0% { transform: scale(0); }
+          60% { transform: scale(1.1); }
+          100% { transform: scale(1); }
+        }
+
+        .animate-slideUpFade {
+          opacity: 0;
+          transform: translateY(50px);
+          animation: slideUpFade 0.6s ease-out forwards;
+        }
+        @keyframes slideUpFade {
+          0% { opacity: 0; transform: translateY(50px); }
+          100% { opacity: 1; transform: translateY(0); }
+        }
+      `}</style>
     </section>
   );
 };

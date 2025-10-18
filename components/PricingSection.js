@@ -5,65 +5,73 @@ import "../styles/pricingSection.css";
 const PricingSection = () => {
   const packages = [
     {
-      name: "Starter Pack",
-      features: [
-        "1 - 3 Pages (Home, About, Contact)",
-        "Mobile Responsive Design",
-        "Contact Form → Email/Sheets",
-        "Google My Business Setup",
+      name: "Early-Stage Startup (0–10 Members)",
+      subtitle: "“Let’s build your foundation.”",
+      needs: [
+        "Brand & Logo",
+        "Website / Landing Page",
+        "Quick E-commerce Setup",
+        "Basic CRM + WhatsApp",
+        "Starter Digital Marketing",
+        "MSP Lite Support",
       ],
-      duration: "15 - 18 Days",
-      color: "#2563eb", // blue
+      why: "Your website acts as a 24/7 salesperson, capturing leads efficiently.",
+      color: "#2563eb",
     },
     {
-      name: "Growth Pack",
-      features: [
-        "5 Pages (Home, About, Services, Blog, Contact)",
-        "Blog Setup + Basic SEO + Sitemap",
-        "GMB Optimization",
-        "Google Analytics Integration",
+      name: "Growing Startup (10–50 Members)",
+      subtitle: "“Let’s scale your reach and processes.”",
+      needs: [
+        "Website / Business Portal",
+        "Marketing + Lead Campaigns",
+        "WhatsApp CRM Automation",
+        "SEO & Keywords",
+        "MSP Standard Support",
       ],
-      duration: "20 - 25 Days",
-      color: "#16a34a", // green
+      why: "Automation and marketing work together to bring leads and track them.",
+      color: "#16a34a",
     },
     {
-      name: "Professional Pack",
-      features: [
-        "5 - 10 Custom Designed Pages",
-        "Blog with Categories & Tags",
-        "Lead Automation → Google Sheets",
-        "On-Page SEO + Analytics + Tag Manager",
-        "WhatsApp API Integration",
+      name: "SMB (50–2000 Members)",
+      subtitle: "“Let’s digitize your operations and expand your brand.”",
+      needs: [
+        "Enterprise Website / Web App",
+        "CRM & Sales Automation",
+        "Custom ERP / Software",
+        "Digital Marketing + Ads",
+        "MSP Pro Support",
       ],
-      duration: "30 - 35 Days",
-      color: "#f59e0b", // amber
+      why: "Efficiency increases, customers stay connected, and management gets real-time insights.",
+      color: "#f59e0b",
     },
     {
-      name: "Advanced Pack",
-      features: [
-        "Custom Web App (CRM Lite + Attendance System)",
-        "Workflow Automation (Lead → Auto Follow-up)",
-        "Admin Panel + Payment Gateway",
-        "Employee & Lead Management Dashboard",
+      name: "Mid-Enterprise",
+      subtitle: "“Let’s integrate systems and expand globally.”",
+      needs: [
+        "ERP + CRM Integration",
+        "Data Analytics & Reporting",
+        "Marketing Automation",
+        "Multi-location Branding",
+        "MSP Advanced Support",
       ],
-      duration: "50 - 60 Days",
-      color: "#db2777", // pink
+      why: "Data-driven insights and consistent digital presence drive growth.",
+      color: "#db2777",
     },
     {
-      name: "Enterprise Pack",
-      features: [
-        "Fully Custom Web App",
-        "Multi-Role CRM + Product Catalog + Orders",
-        "ERP/API Integrations + Payment Gateway",
-        "Advanced Reporting & Dashboards",
-        "3 Months Support + SEO Optimization",
+      name: "Enterprise & Beyond",
+      subtitle: "“Let’s modernize, automate, and sustain global growth.”",
+      needs: [
+        "Enterprise Software & Cloud",
+        "AI & Predictive Analytics",
+        "Global Campaigns",
+        "Advanced CRM & Workflows",
+        "MSP Enterprise Support",
       ],
-      duration: "90 - 110 Days",
-      color: "#7c3aed", // purple
+      why: "Operate at scale globally, fully connected and automated.",
+      color: "#7c3aed",
     },
   ];
 
-  // IntersectionObserver to trigger animations
   useEffect(() => {
     const cards = document.querySelectorAll(".pricing-card");
 
@@ -73,7 +81,7 @@ const PricingSection = () => {
           if (entry.isIntersecting) {
             entry.target.classList.add("animate");
           } else {
-            entry.target.classList.remove("animate"); // re-trigger on scroll
+            entry.target.classList.remove("animate");
           }
         });
       },
@@ -102,24 +110,30 @@ const PricingSection = () => {
           {packages.map((pkg, index) => (
             <div
               key={index}
-              className="pricing-card rounded-xl shadow-lg p-6 flex flex-col justify-between  bg-gray-50"
+              className="pricing-card rounded-xl shadow-lg p-6 flex flex-col bg-gray-50"
               style={{ borderTop: `6px solid ${pkg.color}` }}
             >
-              <h3 className="text-2xl font-bold mb-4">{pkg.name}</h3>
-              <ul className="text-left mb-6 space-y-2">
-                {pkg.features.map((feature, i) => (
-                  <li key={i} className="text-gray-700 flex items-start">
-                    <span
-                      className="w-2 h-2 mt-2 rounded-full mr-3"
-                      style={{ backgroundColor: pkg.color }}
-                    ></span>
-                    {feature}
-                  </li>
-                ))}
-              </ul>
-              <p className="font-semibold text-lg" style={{ color: pkg.color }}>
-                Duration: {pkg.duration}
-              </p>
+              <h3
+                className="text-2xl font-bold mb-1"
+                style={{ color: "#001a33" }}
+              >
+                {pkg.name}
+              </h3>
+              <p className="text-lg italic text-gray-700 mb-4">{pkg.subtitle}</p>
+
+              <div className="text-left mb-4">
+                <h4 className="font-semibold mb-2">What You Need:</h4>
+                <ul className="list-disc list-inside space-y-1 text-gray-700">
+                  {pkg.needs.map((item, i) => (
+                    <li key={i}>{item}</li>
+                  ))}
+                </ul>
+              </div>
+
+              <div className="text-left">
+                <h4 className="font-semibold mb-2">Why It Matters:</h4>
+                <p className="text-gray-700">{pkg.why}</p>
+              </div>
             </div>
           ))}
         </div>

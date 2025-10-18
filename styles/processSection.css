@@ -1,5 +1,21 @@
+.process-section {
+  position: relative;
+  background-color: #ffffff;
+  overflow: hidden;
+}
+
+.process-canvas {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+}
+
+/* SVG path animation */
 .path-draw {
-  stroke-dasharray: 1000; /* large enough to cover path */
+  stroke-dasharray: 1000;
   stroke-dashoffset: 1000;
   animation: drawPath 1.2s forwards ease-out;
   animation-delay: 0.5s;

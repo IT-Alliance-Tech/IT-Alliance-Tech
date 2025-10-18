@@ -18,63 +18,123 @@ import youtubeMarketingImg from "../../assets/images/service10.png";
 const ServicesPage = () => {
   const services = [
     {
-      title: "MSP Solutions",
+      title: "WebCraft: Building Digital Identities That Perform",
       description:
-        "Comprehensive Managed Service Provider solutions that streamline your IT operations. We provide 24/7 monitoring, maintenance, and support for your entire IT infrastructure, ensuring maximum uptime and optimal performance. Our proactive approach prevents issues before they impact your business, allowing you to focus on growth while we handle the technology.",
+        "Your website isn’t just a link — it’s your brand’s first handshake. At IT Alliance Tech, we design and develop high-performance websites that blend creativity, speed, and scalability. Whether you’re a startup or a global brand, we craft experiences that convert visitors into loyal customers.",
+      points: [
+        "Bespoke & responsive design",
+        "SEO + performance optimized",
+        "Integrated with CRM, analytics & lead tracking",
+        "Built to evolve with your business",
+      ],
       image: mspImg,
     },
     {
-      title: "AI Chatbot Marketing",
+      title: "CodeCore: Custom Web Apps for Smarter Businesses",
       description:
-        "Revolutionary AI-powered chatbot solutions that transform customer engagement and drive sales. Our intelligent chatbots provide instant customer support, qualify leads, and guide prospects through your sales funnel 24/7. Increase conversion rates, reduce response times, and deliver personalized experiences that keep customers coming back.",
+        "From concept to code — we build what your business needs. Our team delivers secure, scalable web applications designed to automate processes, connect users, and unlock growth. We turn complex workflows into simple, digital-first systems.",
+      points: [
+        "Enterprise dashboards",
+        "Client & partner portals",
+        "Automation systems",
+        "Business process management tools",
+      ],
       image: aiChatbotImg,
     },
     {
-      title: "Digital Growth Packages",
+      title: "ShopSphere: E-Commerce That Converts",
       description:
-        "Complete digital transformation packages designed to accelerate your business growth. Our comprehensive approach includes website optimization, social media management, content marketing, and performance analytics. We create integrated strategies that build brand awareness, generate quality leads, and maximize your return on investment.",
+        "Where technology meets buying behavior. We design beautiful and high-performing online stores that make shopping easy and rewarding. From small catalogs to multi-vendor setups — your brand deserves a global storefront.",
+      points: [
+        "Shopify / WooCommerce / Magento builds",
+        "Payment gateway & logistics integration",
+        "Smart inventory & product management",
+        "Conversion-driven design",
+      ],
       image: digitalGrowthImg,
     },
     {
-      title: "Digital Marketing",
+      title: "SyncSuite: CRM & Business Automation",
       description:
-        "Strategic digital marketing campaigns that amplify your brand presence and drive measurable results. From SEO and PPC advertising to social media marketing and email campaigns, we create data-driven strategies that reach your target audience at the right time with the right message, maximizing engagement and conversions.",
+        "Run your business, don’t chase it. We help you take control of sales, marketing, and support — all in one place. Our CRM & automation tools eliminate manual chaos and help you focus on growth.",
+      points: [
+        "Lead & customer management",
+        "Sales pipeline automation",
+        "Integrated WhatsApp & Email CRM",
+        "Real-time analytics & tracking",
+      ],
       image: digitalMarketingImg,
     },
     {
-      title: "Graphics & Media Pricing",
+      title: "BrandPulse: Digital Marketing That Moves People",
       description:
-        "Professional graphic design and multimedia services that bring your brand vision to life. Our creative team delivers stunning visuals, engaging videos, and compelling content that captures attention and communicates your message effectively. From logos and branding to marketing materials and digital assets, we create designs that make an impact.",
+        "We don’t just promote — we position you to lead. Through creativity and analytics, we build your brand’s story across platforms and audiences. From search to social, we ensure your voice reaches the right people at the right time.",
+      points: [
+        "SEO & SEM growth campaigns",
+        "Social media strategy & ads (Meta, Google, LinkedIn)",
+        "Content creation & performance tracking",
+        "WhatsApp & Email automation marketing",
+      ],
       image: graphicsImg,
     },
     {
-      title: "Hosting & Cloud",
+      title: "CloudAxis: Managed IT & Cloud Solutions",
       description:
-        "Reliable, secure, and scalable hosting and cloud solutions that keep your business running smoothly. Our infrastructure services include web hosting, cloud migration, data backup, and disaster recovery. We ensure your applications and data are always accessible, protected, and performing at peak efficiency with 99.9% uptime guarantee.",
+        "Let us handle the tech — you focus on innovation. We deliver 24×7 managed IT services and scalable cloud support that empower your business to run smoothly. Stay secure, connected, and future-ready.",
+      points: [
+        "Cloud setup & migration",
+        "Server & network monitoring",
+        "Data backup & security",
+        "IT resource management",
+      ],
       image: hostingImg,
     },
     {
       title: "Payment Gateway",
       description:
-        "Secure and seamless payment processing solutions that enhance customer experience and boost sales. Our payment gateway integration supports multiple payment methods, ensures PCI compliance, and provides real-time transaction monitoring. Accept payments globally with confidence, knowing your customers' data is protected with enterprise-grade security.",
+        "Secure and seamless payment processing solutions that enhance customer experience and boost sales. Our payment gateway integration supports multiple payment methods, ensures PCI compliance, and provides real-time transaction monitoring.",
+      points: [
+        "Supports multiple payment methods",
+        "PCI compliance ensured",
+        "Real-time transaction monitoring",
+        "Easy integration with websites & apps",
+      ],
       image: paymentGatewayImg,
     },
     {
       title: "Small Combo Growth Packages",
       description:
-        "Tailored growth packages specifically designed for small businesses and startups. These cost-effective solutions combine essential digital services including basic website development, social media setup, local SEO, and lead generation tools. Perfect for businesses looking to establish their digital presence without breaking the budget.",
+        "Tailored growth packages specifically designed for small businesses and startups. These cost-effective solutions combine essential digital services including basic website development, social media setup, local SEO, and lead generation tools.",
+      points: [
+        "Basic website development",
+        "Social media setup & optimization",
+        "Local SEO integration",
+        "Lead generation tools",
+      ],
       image: smallComboImg,
     },
     {
       title: "Website and Web App Pricing",
       description:
-        "Custom website and web application development services that deliver exceptional user experiences. From responsive websites to complex web applications, we build scalable, secure, and user-friendly solutions. Our development process includes modern frameworks, mobile optimization, and ongoing maintenance to ensure your digital platform evolves with your business.",
+        "Custom website and web application development services that deliver exceptional user experiences. From responsive websites to complex web applications, we build scalable, secure, and user-friendly solutions.",
+      points: [
+        "Responsive & mobile-first design",
+        "Secure & scalable architecture",
+        "Custom web applications",
+        "Ongoing maintenance & updates",
+      ],
       image: websiteWebAppImg,
     },
     {
       title: "YouTube Marketing",
       description:
-        "Comprehensive YouTube marketing strategies that grow your channel and engage your audience. We handle everything from content creation and optimization to audience analysis and monetization strategies. Build a strong video presence, increase subscribers, and turn viewers into customers with our proven YouTube marketing techniques.",
+        "Comprehensive YouTube marketing strategies that grow your channel and engage your audience. We handle everything from content creation and optimization to audience analysis and monetization strategies.",
+      points: [
+        "Content creation & optimization",
+        "Channel growth strategy",
+        "Monetization & analytics",
+        "Audience engagement campaigns",
+      ],
       image: youtubeMarketingImg,
     },
   ];
@@ -100,25 +160,28 @@ const ServicesPage = () => {
   return (
     <div className="min-h-screen">
       {/* Hero */}
-      <section className="relative pt-20 pb-16 bg-gradient-to-br from-indigo-700 to-purple-800 text-white">
+      <section
+        className="relative pt-20 pb-16 text-white"
+        style={{ backgroundColor: "#001a33" }} // banner background same as contact/about
+      >
         <div className="absolute inset-0 bg-black opacity-40"></div>
         <div className="relative max-w-7xl mx-auto px-6 text-center">
           <h1 className="text-5xl font-bold mb-4">Our Services</h1>
-          <p className="text-xl text-blue-100">
-            Empowering Your Digital Growth
-          </p>
+          <p className="text-xl text-blue-100">Empowering Your Digital Growth</p>
         </div>
       </section>
 
       {/* Services */}
-      <section className="py-20 bg-white">
+      <section className="py-20 bg-gray-100">
         <div className="max-w-7xl mx-auto px-6">
           <div className="space-y-20">
             {services.map((service, index) => (
               <div
                 key={index}
-                className={`grid grid-cols-1 lg:grid-cols-2 gap-12 items-center p-6 rounded-2xl shadow-lg bg-gray-50
-                  ${index % 2 === 1 ? "lg:grid-flow-col-dense" : ""}`}
+                className={`grid grid-cols-1 lg:grid-cols-2 gap-12 items-center p-6 rounded-2xl shadow-lg ${
+                  index % 2 === 1 ? "lg:grid-flow-col-dense" : ""
+                }`}
+                style={{ backgroundColor: "#fefefe" }}
               >
                 {/* Image */}
                 <div className={`${index % 2 === 1 ? "lg:col-start-2" : ""}`}>
@@ -144,16 +207,23 @@ const ServicesPage = () => {
 
                 {/* Text */}
                 <div
-                  className={`space-y-6 animate-reveal ${
+                  className={`space-y-4 animate-reveal ${
                     index % 2 === 0 ? "slide-from-left" : "slide-from-right"
                   } ${index % 2 === 1 ? "lg:col-start-1" : ""}`}
                 >
-                  <h2 className="text-3xl font-bold text-gray-900">
-                    <span style={{ color: "#2A0A73" }}>{service.title}</span>
+                  <h2 className="text-3xl font-bold text-gray-900" style={{ color: "#001a33" }}>
+                    {service.title}
                   </h2>
                   <p className="text-lg text-gray-600 leading-relaxed">
                     {service.description}
                   </p>
+                  {service.points && (
+                    <ul className="list-disc list-inside text-gray-600 mt-2 space-y-1">
+                      {service.points.map((point, i) => (
+                        <li key={i}>{point}</li>
+                      ))}
+                    </ul>
+                  )}
                 </div>
               </div>
             ))}

@@ -82,17 +82,23 @@ const HeroSection = () => {
     <section className="hero-section">
       <canvas ref={canvasRef} className="hero-canvas" />
       <div className="hero-content">
+        {/* ✅ Updated Headline */}
         <h1 className="text-4xl md:text-6xl font-bold text-white mb-6">
-          Empowering Your Business in the{" "}
-          <span style={{ color: "#ffd700" }}>Digital Era</span>
+          We Don’t Just Build Websites —{" "}
+          <span style={{ color: "#ffd700" }}>We Build Businesses.</span>
         </h1>
+
+        {/* ✅ Updated Subheadline */}
         <p className="text-xl text-white/80 mb-8 max-w-3xl mx-auto leading-relaxed">
-          Transform your business with cutting-edge technology solutions. We
-          deliver innovative IT services, digital marketing strategies, and
-          custom web applications that drive growth and success.
+          From startups finding their first customers to enterprises scaling
+          globally, IT Alliance Tech helps transform ideas into sustainable
+          digital ecosystems. We design, develop, and deliver solutions that
+          power growth, simplify operations, and amplify visibility.
         </p>
+
+        {/* ✅ Updated CTA */}
         <button className="hero-btn-primary" onClick={handleGetStarted}>
-          Get Started
+          Book a Free Consultation →
         </button>
       </div>
     </section>
