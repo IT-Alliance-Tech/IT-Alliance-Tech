@@ -58,7 +58,7 @@ const IndustriesSection = () => {
     return () => cards.forEach((card) => observer.unobserve(card));
   }, []);
 
-  // Full-section background animation
+  // Background animation like Process section
   useEffect(() => {
     const canvas = canvasRef.current;
     const ctx = canvas.getContext("2d");
@@ -71,36 +71,55 @@ const IndustriesSection = () => {
     resizeCanvas();
     window.addEventListener("resize", resizeCanvas);
 
-    const cubes = [];
-    const CUBE_COUNT = 60;
+    const circles = [];
+    const CIRCLE_COUNT = 50;
 
-    for (let i = 0; i < CUBE_COUNT; i++) {
-      cubes.push({
+    for (let i = 0; i < CIRCLE_COUNT; i++) {
+      circles.push({
         x: Math.random() * canvas.width,
         y: Math.random() * canvas.height,
-        size: 5 + Math.random() * 10,
-        vx: (Math.random() - 0.5) * 0.7,
-        vy: (Math.random() - 0.5) * 0.7,
-        angle: Math.random() * 360,
-        va: (Math.random() - 0.5) * 0.02,
-        color: `rgba(0,26,51,${0.2 + Math.random() * 0.4})`, // blue-gray shades
+        size: 4 + Math.random() * 12,
+        vx: (Math.random() - 0.5) * 0.6,
+        vy: (Math.random() - 0.5) * 0.6,
+        hue: 200 + Math.random() * 40,
       });
     }
 
     const draw = () => {
-      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      ctx.fillStyle = "#f5f5f5"; // slightly darker neutral background
+      ctx.fillRect(0, 0, canvas.width, canvas.height);
 
-      cubes.forEach((c) => {
-        ctx.save();
-        ctx.translate(c.x, c.y);
-        ctx.rotate(c.angle);
-        ctx.fillStyle = c.color;
-        ctx.fillRect(-c.size / 2, -c.size / 2, c.size, c.size);
-        ctx.restore();
+      // Draw connecting lines
+      for (let i = 0; i < CIRCLE_COUNT; i++) {
+        for (let j = i + 1; j < CIRCLE_COUNT; j++) {
+          const dx = circles[i].x - circles[j].x;
+          const dy = circles[i].y - circles[j].y;
+          const dist = Math.sqrt(dx * dx + dy * dy);
+          if (dist < 120) {
+            ctx.strokeStyle = `rgba(30,90,200,${1 - dist / 120})`;
+            ctx.lineWidth = 1;
+            ctx.beginPath();
+            ctx.moveTo(circles[i].x, circles[i].y);
+            ctx.lineTo(circles[j].x, circles[j].y);
+            ctx.stroke();
+          }
+        }
+      }
+
+      // Draw glowing circles
+      circles.forEach((c) => {
+        const gradient = ctx.createRadialGradient(c.x, c.y, 0, c.x, c.y, c.size);
+        gradient.addColorStop(0, `hsla(${c.hue}, 70%, 60%, 0.8)`);
+        gradient.addColorStop(1, `hsla(${c.hue}, 60%, 80%, 0)`);
+
+        ctx.fillStyle = gradient;
+        ctx.beginPath();
+        ctx.arc(c.x, c.y, c.size, 0, Math.PI * 2);
+        ctx.fill();
 
         c.x += c.vx;
         c.y += c.vy;
-        c.angle += c.va;
+        c.hue += 0.1;
 
         if (c.x < 0) c.x = canvas.width;
         if (c.x > canvas.width) c.x = 0;
@@ -121,9 +140,10 @@ const IndustriesSection = () => {
       <canvas ref={canvasRef} className="industries-bg-canvas" />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        <div className="text-center mb-12 animate-fadeUp">
-          <h2 className="text-4xl font-bold text-gray-900 mb-4">
-            Industries <span style={{ color: "#001a33" }}>We Serve</span>
+        {/* MAIN HEADING (no animation) */}
+        <div className="text-center mb-10">
+          <h2 className="text-4xl font-bold text-gray-900">
+            Industries We Serve
           </h2>
         </div>
 
