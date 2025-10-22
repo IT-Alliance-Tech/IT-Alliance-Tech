@@ -18,6 +18,7 @@ import youtubeMarketingImg from "../../assets/images/service10.png";
 const ServicesPage = () => {
   const services = [
     {
+      id: "webcraft",
       title: "WebCraft: Building Digital Identities That Perform",
       description:
         "Your website isn’t just a link — it’s your brand’s first handshake. At IT Alliance Tech, we design and develop high-performance websites that blend creativity, speed, and scalability. Whether you’re a startup or a global brand, we craft experiences that convert visitors into loyal customers.",
@@ -30,6 +31,7 @@ const ServicesPage = () => {
       image: mspImg,
     },
     {
+      id: "codecore",
       title: "CodeCore: Custom Web Apps for Smarter Businesses",
       description:
         "From concept to code — we build what your business needs. Our team delivers secure, scalable web applications designed to automate processes, connect users, and unlock growth. We turn complex workflows into simple, digital-first systems.",
@@ -42,6 +44,7 @@ const ServicesPage = () => {
       image: aiChatbotImg,
     },
     {
+      id: "shopsphere",
       title: "ShopSphere: E-Commerce That Converts",
       description:
         "Where technology meets buying behavior. We design beautiful and high-performing online stores that make shopping easy and rewarding. From small catalogs to multi-vendor setups — your brand deserves a global storefront.",
@@ -54,6 +57,7 @@ const ServicesPage = () => {
       image: digitalGrowthImg,
     },
     {
+      id: "syncsuite",
       title: "SyncSuite: CRM & Business Automation",
       description:
         "Run your business, don’t chase it. We help you take control of sales, marketing, and support — all in one place. Our CRM & automation tools eliminate manual chaos and help you focus on growth.",
@@ -66,6 +70,7 @@ const ServicesPage = () => {
       image: digitalMarketingImg,
     },
     {
+      id: "brandpulse",
       title: "BrandPulse: Digital Marketing That Moves People",
       description:
         "We don’t just promote — we position you to lead. Through creativity and analytics, we build your brand’s story across platforms and audiences. From search to social, we ensure your voice reaches the right people at the right time.",
@@ -78,6 +83,7 @@ const ServicesPage = () => {
       image: graphicsImg,
     },
     {
+      id: "cloudaxis",
       title: "CloudAxis: Managed IT & Cloud Solutions",
       description:
         "Let us handle the tech — you focus on innovation. We deliver 24×7 managed IT services and scalable cloud support that empower your business to run smoothly. Stay secure, connected, and future-ready.",
@@ -90,6 +96,7 @@ const ServicesPage = () => {
       image: hostingImg,
     },
     {
+      id: "payment-gateway",
       title: "Payment Gateway",
       description:
         "Secure and seamless payment processing solutions that enhance customer experience and boost sales. Our payment gateway integration supports multiple payment methods, ensures PCI compliance, and provides real-time transaction monitoring.",
@@ -102,6 +109,7 @@ const ServicesPage = () => {
       image: paymentGatewayImg,
     },
     {
+      id: "small-combo",
       title: "Small Combo Growth Packages",
       description:
         "Tailored growth packages specifically designed for small businesses and startups. These cost-effective solutions combine essential digital services including basic website development, social media setup, local SEO, and lead generation tools.",
@@ -114,6 +122,7 @@ const ServicesPage = () => {
       image: smallComboImg,
     },
     {
+      id: "website-webapp",
       title: "Website and Web App Pricing",
       description:
         "Custom website and web application development services that deliver exceptional user experiences. From responsive websites to complex web applications, we build scalable, secure, and user-friendly solutions.",
@@ -126,6 +135,7 @@ const ServicesPage = () => {
       image: websiteWebAppImg,
     },
     {
+      id: "youtube-marketing",
       title: "YouTube Marketing",
       description:
         "Comprehensive YouTube marketing strategies that grow your channel and engage your audience. We handle everything from content creation and optimization to audience analysis and monetization strategies.",
@@ -162,7 +172,7 @@ const ServicesPage = () => {
       {/* Hero */}
       <section
         className="relative pt-20 pb-16 text-white"
-        style={{ backgroundColor: "#001a33" }} // banner background same as contact/about
+        style={{ backgroundColor: "#001a33" }}
       >
         <div className="absolute inset-0 bg-black opacity-40"></div>
         <div className="relative max-w-7xl mx-auto px-6 text-center">
@@ -178,6 +188,7 @@ const ServicesPage = () => {
             {services.map((service, index) => (
               <div
                 key={index}
+                id={service.id} // ✅ explicit id for linking
                 className={`grid grid-cols-1 lg:grid-cols-2 gap-12 items-center p-6 rounded-2xl shadow-lg ${
                   index % 2 === 1 ? "lg:grid-flow-col-dense" : ""
                 }`}

@@ -1,32 +1,45 @@
-/* Section background */
+/* ================================
+   Section Background
+================================ */
 .contact-section {
   position: relative;
   overflow: hidden;
+  margin-top: 0;          /* ✅ Reduced top margin */
+  padding-top: 30px;      /* Optional – adjust if you want a little breathing room */
+  margin-bottom: 60px;    /* Keeps balanced space below */
 }
 
-/* Animate on scroll - fade from left */
+/* ================================
+   Animate on Scroll - Fade from Left
+================================ */
 .fade-left {
   opacity: 0;
   transform: translateX(-50px);
   transition: all 0.8s ease-out;
 }
+
 .fade-left.animate {
   opacity: 1;
   transform: translateX(0);
 }
 
-/* Animate on scroll - fade from right */
+/* ================================
+   Animate on Scroll - Fade from Right
+================================ */
 .fade-right {
   opacity: 0;
   transform: translateX(50px);
   transition: all 0.8s ease-out;
 }
+
 .fade-right.animate {
   opacity: 1;
   transform: translateX(0);
 }
 
-/* Input & Textarea Styles */
+/* ================================
+   Input & Textarea Styles
+================================ */
 .contact-input {
   width: 100%;
   padding: 0.85rem 1rem;
@@ -42,7 +55,9 @@
   transform: scale(1.02);
 }
 
-/* Submit Button */
+/* ================================
+   Submit Button
+================================ */
 .contact-button {
   width: 100%;
   padding: 0.85rem 1rem;
@@ -59,7 +74,9 @@
   box-shadow: 0 10px 25px rgba(0, 74, 173, 0.3);
 }
 
-/* Smooth card-like fade for form */
+/* ================================
+   Smooth Card-Like Fade for Form
+================================ */
 .bg-gray-50.animate {
   animation: pulseIn 0.8s ease forwards;
 }
