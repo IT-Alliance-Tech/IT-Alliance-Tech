@@ -1,0 +1,210 @@
+/* ================= Container ================= */
+.testimonials {
+  width: 100%;
+  margin: 0 auto;
+  text-align: center;
+  padding: 80px 20px 60px 20px;
+  font-family: 'Rubik', sans-serif;
+  background: linear-gradient(135deg, #f8f9ff 0%, #e8f0ff 100%);
+  position: relative;
+  overflow: hidden;
+  min-height: 500px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+/* ================= Canvas Background ================= */
+.testimonials-canvas {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 0; /* behind everything */
+}
+
+/* ================= Title ================= */
+.title {
+  font-size: 36px;
+  font-weight: 700;
+  margin-bottom: 50px;
+  color: #222;
+  line-height: 1.3;
+  position: relative;
+  z-index: 1;
+}
+
+/* ================= Testimonial Card ================= */
+.testimonial-content {
+  position: relative;
+  max-width: 800px;
+  margin: 0 auto 40px auto;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 350px;
+  background: #fff;
+  border-radius: 20px;
+  padding: 50px 40px;
+  box-shadow: 0 10px 30px rgba(31, 41, 55, 0.1); /* soft shadow */
+  border: 1px solid rgba(31, 41, 55, 0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* ================= Quote Icon ================= */
+.quote-icon {
+  font-size: 48px;
+  color: #1f2937; /* gray */
+  margin-bottom: 30px;
+  opacity: 0.8;
+}
+
+/* ================= Review Text ================= */
+.review {
+  font-size: 20px;
+  color: #444;
+  max-width: 600px;
+  margin: 0 auto 40px;
+  line-height: 1.7;
+  font-style: italic;
+  text-align: center;
+  font-weight: 400;
+}
+
+/* ================= Client Info ================= */
+.client-info {
+  margin-bottom: 20px;
+}
+
+.name {
+  font-size: 24px;
+  font-weight: 700;
+  margin-bottom: 5px;
+  color: #1f2937;
+}
+
+.role {
+  font-size: 16px;
+  color: #666;
+  font-weight: 500;
+  margin: 0;
+}
+
+/* ================= Stars ================= */
+.stars {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+  margin: 0;
+}
+
+/* ================= Arrows ================= */
+.arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: #1f2937;
+  color: #fff;
+  border: none;
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  font-size: 18px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.arrow:hover {
+  background: #111827;
+  transform: translateY(-50%) scale(1.1);
+}
+
+.arrow.left {
+  left: 30px;
+}
+
+.arrow.right {
+  right: 30px;
+}
+
+/* ================= Dots ================= */
+.dots {
+  position: absolute;
+  bottom: 30px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+  z-index: 1;
+}
+
+.dot {
+  height: 12px;
+  width: 12px;
+  background-color: rgba(31, 41, 55, 0.3);
+  border-radius: 50%;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.dot.active {
+  background-color: #1f2937;
+  transform: scale(1.2);
+}
+
+.dot:hover {
+  background-color: #1f2937;
+}
+
+/* ================= Fade Animation ================= */
+.fade {
+  animation: fadeIn 0.8s ease-in-out;
+}
+
+@keyframes fadeIn {
+  from { 
+    opacity: 0; 
+    transform: translateY(30px); 
+  }
+  to { 
+    opacity: 1; 
+    transform: translateY(0); 
+  }
+}
+
+/* ================= Hover Animation on Card ================= */
+.testimonial-content:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 15px 35px rgba(31,41,55,0.2);
+}
+
+/* ================= Responsive ================= */
+
+/* Tablets */
+@media (max-width: 992px) {
+  .title { font-size: 28px; }
+  .testimonial-content { padding: 40px 30px; min-height: 300px; }
+  .arrow.left { left: 15px; }
+  .arrow.right { right: 15px; }
+}
+
+/* Mobile */
+@media (max-width: 600px) {
+  .title { font-size: 24px; margin-bottom: 30px; }
+  .testimonial-content { min-height: 280px; padding: 30px 20px; margin-bottom: 30px; }
+  .quote-icon { font-size: 32px; margin-bottom: 20px; }
+  .arrow { width: 40px; height: 40px; font-size: 16px; }
+  .arrow.left { left: 10px; }
+  .arrow.right { right: 10px; }
+  .dots { bottom: 15px; }
+  .dot { width: 10px; height: 10px; }
+}
