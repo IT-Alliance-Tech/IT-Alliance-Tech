@@ -3,10 +3,10 @@
 ================================ */
 .contact-section {
   position: relative;
-  overflow: hidden;
-  margin-top: 0;          /* ✅ Reduced top margin */
-  padding-top: 30px;      /* Optional – adjust if you want a little breathing room */
-  margin-bottom: 60px;    /* Keeps balanced space below */
+  overflow: visible;        /* ✅ Changed from hidden to visible to allow dropdown to show below */
+  margin-top: 0;            /* ✅ Reduced top margin */
+  padding-top: 30px;        /* Optional – adjust if you want a little breathing room */
+  margin-bottom: 60px;      /* Keeps balanced space below */
 }
 
 /* ================================
@@ -47,6 +47,8 @@
   border-radius: 0.75rem;
   outline: none;
   transition: all 0.3s ease;
+  position: relative;        /* ✅ Ensures dropdown aligns correctly */
+  z-index: 10;               /* ✅ Keeps the select on top of other elements */
 }
 
 .contact-input:focus {
@@ -90,4 +92,22 @@
     opacity: 1;
     transform: scale(1);
   }
+}
+
+/* ================================
+   Fix Select Dropdown to Display Below
+================================ */
+.contact-section select {
+  position: relative;   /* Ensure dropdown is relative to container */
+  z-index: 10;          /* Appear above other elements */
+  appearance: none;     /* Optional: remove default arrow styling for consistency */
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  background-position: right 1rem center;
+  background-repeat: no-repeat;
+}
+
+/* Optional: custom arrow for select */
+.contact-section select::-ms-expand {
+  display: none; /* Remove default IE arrow */
 }
