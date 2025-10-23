@@ -1,30 +1,26 @@
 import React from 'react';
 import { RiMailLine, RiPhoneLine, RiWhatsappLine } from '@remixicon/react';
 import Image from 'next/image';
-
-// ✅ Import your logo (place logo.png in assets/images folder)
 import logoImg from "../assets/images/it1.png";
 import Link from 'next/link';
 
 const Footer = () => {
   const services = [
-    'MSP Solutions',
-    'AI Chatbot Marketing',
-    'Digital Growth Packages',
-    'Digital Marketing',
-    'Graphics & Media Pricing',
-    'Hosting & Cloud',
-    'Payment Gateway',
-    'Small Combo Growth Packages',
-    'Website and Web App Pricing',
-    'Youtube Marketing'
+    { name: 'WebCraft', id: 'webcraft' },
+    { name: 'CodeCore', id: 'codecore' },
+    { name: 'ShopSphere', id: 'shopsphere' },
+    { name: 'SyncSuite', id: 'syncsuite' },
+    { name: 'BrandPulse', id: 'brandpulse' },
+    { name: 'CloudAxis', id: 'cloudaxis' },
+    { name: 'Payment Gateway', id: 'payment-gateway' },
+    { name: 'Small Combo Growth Packages', id: 'small-combo' },
+    { name: 'Website and Web App Pricing', id: 'website-webapp' },
+    { name: 'Youtube Marketing', id: 'youtube-marketing' },
   ];
 
   return (
     <footer className="bg-gray-900 text-white py-12">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        
-        {/* Responsive Grid */}
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-8">
           
           {/* Logo and Contact Info */}
@@ -91,9 +87,13 @@ const Footer = () => {
             <h3 className="text-lg font-semibold mb-4">Services</h3>
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
               {services.map((service, index) => (
-                <div key={index} className="hover:text-blue-400 transition-colors duration-200">
-                  {service}
-                </div>
+                <a
+                  key={index}
+                  href={`/services#${service.id}`}
+                  className="hover:text-blue-400 transition-colors duration-200 block"
+                >
+                  {service.name}
+                </a>
               ))}
             </div>
           </div>
