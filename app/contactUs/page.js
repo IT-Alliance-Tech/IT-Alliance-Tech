@@ -1,28 +1,37 @@
 "use client";
-
 import React, { useState, useEffect } from "react";
 import Image from "next/image";
 import aboutImg from "../../assets/images/contactUs.png";
-import {
-  RiSendPlaneLine,
-  RiMapPinLine,
-  RiPhoneLine,
-  RiMailLine,
-  RiTimeLine,
-} from "@remixicon/react";
+import { RiSendPlaneLine } from "@remixicon/react";
 
 const ContactPage = () => {
   const [formData, setFormData] = useState({
     name: "",
     phone: "",
     email: "",
-    subject: "",
-    additionalInfo: "",
+    service: "",
+    message: "",
   });
-
   const [animate, setAnimate] = useState(false);
+  const [loading, setLoading] = useState(false);
+  const [status, setStatus] = useState("");
 
-  // Trigger animations when component mounts
+  const GOOGLE_SCRIPT_URL =
+    "https://script.google.com/macros/s/AKfycbyKJFLtOFYYe4jMND7rqWU2ZYvDQoyNrNtmkjEGYcKhFsYrW_09lbOUl1HclFYFUBJ0/exec"; // Replace with your deployed Apps Script URL
+
+  const services = [
+    "WebCraft",
+    "CodeCore",
+    "ShopSphere",
+    "SyncSuite",
+    "BrandPulse",
+    "CloudAxis",
+    "Payment Gateway",
+    "Small Combo Growth Packages",
+    "Website and Web App Pricing",
+    "Youtube Marketing",
+  ];
+
   useEffect(() => {
     setAnimate(true);
   }, []);
@@ -39,53 +48,62 @@ const ContactPage = () => {
     setFormData((prev) => ({ ...prev, [name]: value }));
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    if (
-      !formData.name ||
-      !formData.phone ||
-      !formData.email ||
-      !formData.subject
-    ) {
-      alert("Please fill in all required fields");
+    setLoading(true);
+    setStatus("");
+
+    // Basic validation
+    if (!formData.name || !formData.phone || !formData.email || !formData.service || !formData.message) {
+      setStatus("Please fill in all required fields.");
+      setLoading(false);
       return;
     }
+
     if (formData.phone.length !== 10) {
-      alert("Please enter a valid 10-digit phone number");
+      setStatus("Please enter a valid 10-digit phone number.");
+      setLoading(false);
       return;
     }
+
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     if (!emailRegex.test(formData.email)) {
-      alert("Please enter a valid email address");
+      setStatus("Please enter a valid email address.");
+      setLoading(false);
       return;
     }
-    console.log("Form submitted:", formData);
-    alert("Thank you for your query! We will get back to you soon.");
-    setFormData({
-      name: "",
-      phone: "",
-      email: "",
-      subject: "",
-      additionalInfo: "",
-    });
+
+    try {
+      const form = new FormData();
+      form.append("name", formData.name);
+      form.append("phone", formData.phone);
+      form.append("email", formData.email);
+      form.append("service", formData.service);
+      form.append("message", formData.message);
+
+      // Send form data to Google Sheets via Apps Script
+      await fetch("https://script.google.com/macros/s/AKfycbyKJFLtOFYYe4jMND7rqWU2ZYvDQoyNrNtmkjEGYcKhFsYrW_09lbOUl1HclFYFUBJ0/exec", {
+        method: "POST",
+        body: form,
+        mode: "no-cors", // Important for Google Script
+      });
+
+      setStatus("Form submitted successfully!");
+      setFormData({ name: "", phone: "", email: "", service: "", message: "" });
+    } catch (err) {
+      setStatus("Error submitting form. Please try again.");
+    }
+
+    setLoading(false);
   };
 
   return (
-    <div className="min-h-screen">
+    <div className="min-h-screen bg-gray-50">
       {/* Hero Section */}
-      <section
-        className={`relative pt-20 pb-16 text-white transition-opacity duration-1000 ${
-          animate ? "opacity-100" : "opacity-0"
-        }`}
-        style={{ backgroundColor: "#001a33" }} // banner color same as button
-      >
+      <section className={`relative pt-20 pb-16 text-white transition-opacity duration-1000 ${animate ? "opacity-100" : "opacity-0"}`} style={{ backgroundColor: "#001a33" }}>
         <div className="absolute inset-0 bg-black opacity-50"></div>
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h1
-            className={`text-4xl sm:text-5xl lg:text-6xl font-bold transform transition-transform duration-1000 ease-out ${
-              animate ? "translate-y-0" : "-translate-y-10 opacity-0"
-            }`}
-          >
+          <h1 className={`text-4xl sm:text-5xl lg:text-6xl font-bold transform transition-transform duration-1000 ease-out ${animate ? "translate-y-0" : "-translate-y-10 opacity-0"}`}>
             Contact Us
           </h1>
         </div>
@@ -95,149 +113,30 @@ const ContactPage = () => {
       <section className="py-20 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-            {/* Left Side - Contact Form */}
-            <div
-              className={`bg-gray-50 p-8 rounded-2xl shadow-lg transform transition-all duration-1000 ${
-                animate
-                  ? "translate-x-0 opacity-100"
-                  : "-translate-x-10 opacity-0"
-              }`}
-            >
+            <div className={`animate-on-scroll fade-left bg-gray-50 p-8 rounded-2xl shadow-lg transform transition-all duration-1000 ${animate ? "translate-x-0 opacity-100" : "-translate-x-10 opacity-0"}`}>
               <form onSubmit={handleSubmit} className="space-y-6">
-                {["name", "phone", "email", "subject"].map((field) => (
-                  <div key={field}>
-                    <label
-                      htmlFor={field}
-                      className="block text-sm font-medium text-gray-700 mb-2"
-                    >
-                      {field.charAt(0).toUpperCase() + field.slice(1)} *
-                    </label>
-                    <input
-                      type={field === "email" ? "email" : "text"}
-                      id={field}
-                      name={field}
-                      value={formData[field]}
-                      onChange={handleChange}
-                      required
-                      className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none transition-all duration-200"
-                      placeholder={`Enter your ${field}`}
-                    />
-                  </div>
-                ))}
+                <input type="text" name="name" placeholder="Name" value={formData.name} onChange={handleChange} required className="contact-input w-full h-14 px-4 py-3 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500" />
+                <input type="tel" name="phone" placeholder="Phone Number" value={formData.phone} onChange={handleChange} required className="contact-input w-full h-14 px-4 py-3 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500" />
+                <input type="email" name="email" placeholder="Email" value={formData.email} onChange={handleChange} required className="contact-input w-full h-14 px-4 py-3 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500" />
+                
+                <select name="service" value={formData.service} onChange={handleChange} required className="contact-input w-full h-14 px-4 py-3 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500">
+                  <option value="">Select Service</option>
+                  {services.map((s, idx) => <option key={idx} value={s}>{s}</option>)}
+                </select>
 
-                <div>
-                  <label
-                    htmlFor="additionalInfo"
-                    className="block text-sm font-medium text-gray-700 mb-2"
-                  >
-                    Additional Information
-                  </label>
-                  <textarea
-                    id="additionalInfo"
-                    name="additionalInfo"
-                    value={formData.additionalInfo}
-                    onChange={handleChange}
-                    rows={4}
-                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none transition-all duration-200 resize-vertical"
-                    placeholder="Tell us more about your requirements..."
-                  />
-                </div>
+                <textarea name="message" placeholder="Message here" value={formData.message} onChange={handleChange} rows={5} required className="contact-input w-full px-4 py-3 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500"></textarea>
 
-                <button
-                  type="submit"
-                  className="w-full inline-flex items-center justify-center px-8 py-4 text-lg font-semibold text-white rounded-lg shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300"
-                  style={{ backgroundColor: "#001a33" }}
-                >
-                  Send Query
-                  <RiSendPlaneLine className="ml-2" size={20} />
+                <button type="submit" className="w-full inline-flex items-center justify-center px-8 py-4 text-lg font-semibold text-white rounded-lg shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300" style={{ backgroundColor: "#001a33" }} disabled={loading}>
+                  {loading ? "Submitting..." : "Send Query"} <RiSendPlaneLine className="ml-2" size={20} />
                 </button>
+                {status && <p className="mt-2 text-center text-gray-700">{status}</p>}
               </form>
             </div>
 
-            {/* Right Side - Image */}
-            <div
-              className={`transform transition-all duration-1000 ${
-                animate
-                  ? "translate-x-0 opacity-100"
-                  : "translate-x-10 opacity-0"
-              }`}
-            >
-              <Image
-                src={aboutImg}
-                alt="Contact Us"
-                className="rounded-2xl shadow-lg object-cover"
-                priority
-              />
+            {/* Image */}
+            <div className={`animate-on-scroll fade-right relative w-full h-64 lg:h-96 rounded-2xl overflow-hidden shadow-lg transform transition-all duration-1000 ${animate ? "translate-x-0 opacity-100" : "translate-x-10 opacity-0"}`}>
+              <Image src={aboutImg} alt="Contact Us" fill className="object-cover rounded-2xl" />
             </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Get In Touch Section */}
-      <section className="py-20 bg-gray-50">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div
-            className={`text-center mb-12 transform transition-all duration-1000 ${
-              animate ? "translate-y-0 opacity-100" : "translate-y-10 opacity-0"
-            }`}
-          >
-            <h2 className="text-4xl font-bold text-gray-900 mb-4">
-              <span style={{ color: "#001a33" }}>Get In Touch</span>
-            </h2>
-            <p className="text-lg text-gray-600 max-w-3xl mx-auto">
-              Connect with IT Alliance Tech for cutting-edge web & mobile
-              development, digital marketing, SEO, staffing, cybersecurity, and
-              training solutions. Need more details? Reach out to us today!
-            </p>
-          </div>
-
-          {/* Contact Details Grid */}
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-            {[
-              {
-                icon: RiMapPinLine,
-                title: "Address",
-                desc: "Whitefield, Bengaluru-66",
-              },
-              {
-                icon: RiPhoneLine,
-                title: "Phone Numbers",
-                desc: ["9663265984", "7996385985"],
-              },
-              { icon: RiMailLine, title: "Email", desc: "hr@italliance.tech" },
-              {
-                icon: RiTimeLine,
-                title: "Timings",
-                desc: ["Monday - Friday", "9:30am - 6:30pm"],
-              },
-            ].map((item, idx) => (
-              <div
-                key={idx}
-                className={`bg-white p-6 rounded-lg shadow-lg text-center transform transition-all duration-1000 delay-${
-                  idx * 150
-                } ${
-                  animate
-                    ? "translate-y-0 opacity-100"
-                    : "translate-y-10 opacity-0"
-                }`}
-              >
-                <div className="flex justify-center mb-4">
-                  <item.icon size={32} style={{ color: "#001a33" }} />
-                </div>
-                <h3 className="text-lg font-semibold text-gray-900 mb-2">
-                  {item.title}
-                </h3>
-                {Array.isArray(item.desc) ? (
-                  item.desc.map((d, i) => (
-                    <p key={i} className="text-gray-600">
-                      {d}
-                    </p>
-                  ))
-                ) : (
-                  <p className="text-gray-600">{item.desc}</p>
-                )}
-              </div>
-            ))}
           </div>
         </div>
       </section>
