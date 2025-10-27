@@ -1,3 +1,5 @@
+"use client";
+
 import HeroSection from "../components/HeroSection";
 import AboutSection from "../components/AboutSection";
 import BannerSection from "../components/BannerSection";
@@ -5,8 +7,10 @@ import IndustriesSection from "../components/IndustriesSection";
 import ServicesSection from "../components/ServicesSection";
 import ContactSection from "../components/ContactSection";
 import ProcessSection from "../components/ProcessSection";
-import TestimonialsSection from "../components/TestimonialSection"; 
-import WhyChooseSection from "../components/WhyChooseSection"; // <-- new section import
+import TestimonialsSection from "../components/TestimonialSection";
+import WhyChooseSection from "../components/WhyChooseSection";
+import LogoSection from "../components/LogoSection"; // ✅ New Import
+
 import "../styles/homePage.css";
 
 export default function Home() {
@@ -33,8 +37,10 @@ export default function Home() {
         <div className="bgImgSection4">
           <TestimonialsSection />
         </div>
-        {/* <-- Adding WhyChooseSection here before Contact */}
+
+        {/* ✅ Added Logo Section just before Contact Section */}
         <WhyChooseSection />
+        <LogoSection />
         <ContactSection />
       </div>
     </main>
