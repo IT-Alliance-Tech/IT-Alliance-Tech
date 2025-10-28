@@ -1,23 +1,22 @@
 "use client";
 
 import { useState } from "react";
-import { Layers, ShoppingBag } from "lucide-react";
 
 const templates = [
-  { id: 1, title: "Interior Design", previewLink: "https://your-demo-link1.com", category: "business" },
-  { id: 2, title: "Grocery Shop", previewLink: "https://your-demo-link2.com", category: "ecommerce" },
-  { id: 3, title: "Laundry Service", previewLink: "https://your-demo-link3.com", category: "business" },
-  { id: 4, title: "Restaurant Website", previewLink: "https://your-demo-link4.com", category: "business" },
-  { id: 5, title: "Fashion Store", previewLink: "https://your-demo-link5.com", category: "ecommerce" },
-  { id: 6, title: "Digital Agency", previewLink: "https://your-demo-link6.com", category: "business" },
-  { id: 7, title: "Travel Booking", previewLink: "https://your-demo-link7.com", category: "business" },
-  { id: 8, title: "Furniture Store", previewLink: "https://your-demo-link8.com", category: "ecommerce" },
-  { id: 9, title: "Education Portal", previewLink: "https://your-demo-link9.com", category: "business" },
-  { id: 10, title: "Fitness Gym", previewLink: "https://your-demo-link10.com", category: "business" },
-  { id: 11, title: "Electronics Store", previewLink: "https://your-demo-link11.com", category: "ecommerce" },
-  { id: 12, title: "Pet Care", previewLink: "https://your-demo-link12.com", category: "business" },
-  { id: 13, title: "Portfolio Website", previewLink: "https://your-demo-link13.com", category: "business" },
-  { id: 14, title: "Real Estate", previewLink: "https://your-demo-link14.com", category: "business" },
+  { id: 1, title: "Car Rental", previewLink: "https://car-rental-two-xi.vercel.app/", category: "business" },
+  { id: 2, title: "Education Website", previewLink: "https://education-website-eta-ten.vercel.app/", category: "ecommerce" },
+  { id: 3, title: "Business Website", previewLink: "https://business-three-woad.vercel.app/", category: "business" },
+  { id: 4, title: "Travels Website", previewLink: "https://travels-henna.vercel.app/", category: "business" },
+  { id: 5, title: "Events Template", previewLink: "https://events-templete.vercel.app/", category: "ecommerce" },
+  { id: 6, title: "Ecommerce Website", previewLink: "https://ecommerce-mocha-pi.vercel.app/", category: "ecommerce" },
+  { id: 7, title: "Construction Website", previewLink: "https://construction-puce-alpha.vercel.app/", category: "business" },
+  { id: 8, title: "Fashion Ecommerce", previewLink: "https://fashion-ecommerce-sandy.vercel.app/", category: "ecommerce" },
+  { id: 9, title: "Medical Website", previewLink: "https://medical-website-indol.vercel.app/", category: "business" },
+  { id: 10, title: "Event Mania", previewLink: "https://event-maina.vercel.app/", category: "business" },
+  { id: 11, title: "Hospital Website", previewLink: "https://hospital-templete-wine.vercel.app/", category: "ecommerce" },
+  { id: 12, title: "Travel-001", previewLink: "https://travels-001.vercel.app/", category: "business" },
+  { id: 13, title: "Business-001", previewLink: "https://business001.vercel.app/", category: "business" },
+  { id: 14, title: "Business-002", previewLink: "https://business002.vercel.app/", category: "business" },
   { id: 15, title: "Jewellery Shop", previewLink: "https://your-demo-link15.com", category: "ecommerce" },
 ];
 
@@ -25,6 +24,7 @@ export default function TemplatesPage() {
   const [filter, setFilter] = useState("all");
   const [search, setSearch] = useState("");
 
+  // ✅ Filtering logic
   const filteredTemplates = templates.filter(
     (t) =>
       (filter === "all" || t.category === filter) &&
@@ -34,7 +34,7 @@ export default function TemplatesPage() {
   return (
     <div className="w-full min-h-screen bg-gradient-to-br from-sky-50 via-white to-sky-100 flex flex-col items-center py-20 relative overflow-hidden">
       {/* Animated Background */}
-      <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_left,_#cce5ff_0%,_transparent_40%),_radial-gradient(circle_at_bottom_right,_#ffecd2_0%,_transparent_40%)] animate-gradientMove opacity-70"></div>
+      <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_left,#cce5ff_0%,_transparent_40%),_radial-gradient(circle_at_bottom_right,#ffecd2_0%,_transparent_40%)] animate-gradientMove opacity-70"></div>
 
       {/* Header */}
       <div className="text-center mb-14 px-4 relative z-10 animate-fadeIn">
@@ -58,7 +58,7 @@ export default function TemplatesPage() {
         ].map((btn) => (
           <button
             key={btn.value}
-            onClick={() => setFilter(btn.value)}
+            onClick={() => setFilter(btn.value)} // ✅ Works fine
             className={`px-8 py-2 rounded-full font-semibold text-white shadow-lg transition-all duration-300 transform hover:scale-110 hover:shadow-2xl border-2 border-transparent ${
               filter === btn.value
                 ? `bg-gradient-to-r ${btn.gradient}`
@@ -82,45 +82,52 @@ export default function TemplatesPage() {
         <span className="absolute right-5 top-3 text-gray-400">🔍</span>
       </div>
 
-      {/* Templates Grid */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-10 px-6 max-w-7xl z-10">
+      {/* Templates Grid (3 per row) */}
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10 px-6 max-w-[95rem] z-10">
         {filteredTemplates.map((template) => (
           <div
             key={template.id}
-            className="bg-white rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-500 p-8 flex flex-col items-center text-center hover:-translate-y-2 relative overflow-hidden group animate-fadeUp"
+            className="bg-white rounded-2xl shadow-xl hover:shadow-2xl transition-all duration-500 p-6 flex flex-col items-center text-center hover:-translate-y-2 relative overflow-hidden group animate-fadeUp w-full h-[380px]" // ⬇️ Decreased height
           >
-            {/* Accent Background */}
-            <div className="absolute inset-0 bg-gradient-to-br from-sky-100 via-white to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700"></div>
-
-            {/* Icon */}
-            <div className="mb-5 p-3 bg-sky-100 rounded-full group-hover:bg-sky-200 transition-all duration-300">
-              {template.category === "ecommerce" ? (
-                <ShoppingBag className="text-sky-600 w-6 h-6" />
-              ) : (
-                <Layers className="text-amber-600 w-6 h-6" />
-              )}
-            </div>
-
             {/* Title */}
             <h3 className="text-xl font-semibold text-gray-800 mb-4 relative z-10 group-hover:text-sky-700 transition-colors duration-300">
               {template.title}
             </h3>
 
+            {/* Hero Section Preview - increased width */}
+            <div className="relative w-full rounded-xl overflow-hidden border border-gray-200 shadow-inner mb-6 transition-transform duration-500 group-hover:scale-[1.02] flex justify-center">
+              <iframe
+                src={template.previewLink}
+                className="rounded-lg"
+                style={{
+                  width: "300%", 
+                  height: "250px",
+                  border: "none",
+                  pointerEvents: "none",
+                  overflow: "hidden",
+                  transform: "scale(1)",
+                  transformOrigin: "top center",
+                }}
+                title={template.title}
+              />
+              <div className="absolute bottom-0 left-0 w-full h-10 bg-gradient-to-t from-white to-transparent"></div>
+            </div>
+
             {/* Buttons */}
-            <div className="flex space-x-4 relative z-10">
+            <div className="flex space-x-4 relative z-10 mt-auto">
               <button
                 onClick={() => window.open(template.previewLink, "_blank")}
-                className="px-5 py-2 rounded-full bg-gradient-to-r from-sky-500 to-blue-600 text-white font-medium hover:scale-105 transition-transform shadow-md hover:shadow-lg animate-bounce-slow"
+                className="px-6 py-2 rounded-full bg-gradient-to-r from-sky-500 to-blue-600 text-white font-medium hover:scale-105 transition-transform shadow-md hover:shadow-lg"
               >
                 Preview
               </button>
-              <button className="px-5 py-2 rounded-full bg-gradient-to-r from-yellow-400 to-amber-500 text-white font-medium hover:scale-105 transition-transform shadow-md hover:shadow-lg animate-pulse-slow">
+              <button
+                onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
+                className="px-6 py-2 rounded-full bg-gradient-to-r from-yellow-400 to-amber-500 text-white font-medium hover:scale-105 transition-transform shadow-md hover:shadow-lg"
+              >
                 Get Started
               </button>
             </div>
-
-            {/* Bottom Glow */}
-            <div className="absolute -bottom-1 left-1/2 transform -translate-x-1/2 w-24 h-1 bg-gradient-to-r from-sky-400 to-blue-500 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-700"></div>
           </div>
         ))}
       </div>
