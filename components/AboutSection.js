@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import React, { useEffect } from "react";
-import aboutImg from "../assets/images/aboutUs.png";
+import aboutImg from "../assets/images/aboutUs2.png";
 import Image from "next/image";
 import "../styles/aboutUs.css";
 import useScrollAnimation from "./useScrollAnimation";
@@ -37,11 +37,14 @@ const AboutSection = () => {
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
           {/* Left - Image (slide in from right) */}
           <div className="order-2 lg:order-1 reveal slide-right about-image">
-            <Image
-              src={aboutImg}
-              alt="IT Alliance Team"
-              className="rounded-lg shadow-xl w-full"
-            />
+            <div className="w-full lg:w-[95%] mx-auto h-[400px] relative">
+              <Image
+                src={aboutImg}
+                alt="IT Alliance Team"
+                fill
+                className="rounded-lg shadow-xl object-contain"
+              />
+            </div>
           </div>
 
           {/* Right - Text (flip animation) */}
@@ -52,11 +55,13 @@ const AboutSection = () => {
             <p className="text-lg text-gray-600 mb-8 leading-relaxed">
               Established in 2021, IT Alliance Tech was born from a belief that
               every idea — big or small — deserves a digital foundation strong
-              enough to last.We’ve spent years helping startups, small businesses, and
-              enterprises set up their entire ecosystem — from registration to growth — ensuring they have the right technology, digital
-              presence, and brand identity .Our focus goes beyond project delivery — we build long-term
-              partnerships that grow with our clients’ success.Because technology evolves fast, and we make sure your business
-              evolves faster.
+              enough to last. We’ve spent years helping startups, small
+              businesses, and enterprises set up their entire ecosystem — from
+              registration to growth — ensuring they have the right technology,
+              digital presence, and brand identity. Our focus goes beyond
+              project delivery — we build long-term partnerships that grow with
+              our clients’ success. Because technology evolves fast, and we make
+              sure your business evolves faster.
             </p>
             <Link
               href="/aboutUs"
