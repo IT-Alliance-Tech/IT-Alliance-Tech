@@ -45,7 +45,8 @@ const AboutPage = () => {
       {/* About Us Section */}
       <section className="py-20 bg-white">
         <div className="mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-          <div className="max-w-4xl mx-auto scale-in">
+          {/* Increased Image Width */}
+          <div className="w-full lg:w-[95%] mx-auto scale-in">
             <Image
               src={aboutImg}
               alt="IT Alliance Team"
