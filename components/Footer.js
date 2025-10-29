@@ -1,21 +1,23 @@
-import React from 'react';
-import { RiMailLine, RiPhoneLine, RiWhatsappLine } from '@remixicon/react';
-import Image from 'next/image';
+"use client";
+
+import React from "react";
+import { RiMailLine, RiPhoneLine, RiWhatsappLine } from "@remixicon/react";
+import Image from "next/image";
 import logoImg from "../assets/images/it1.png";
-import Link from 'next/link';
+import Link from "next/link";
 
 const Footer = () => {
   const services = [
-    { name: 'WebCraft', id: 'webcraft' },
-    { name: 'CodeCore', id: 'codecore' },
-    { name: 'ShopSphere', id: 'shopsphere' },
-    { name: 'SyncSuite', id: 'syncsuite' },
-    { name: 'BrandPulse', id: 'brandpulse' },
-    { name: 'CloudAxis', id: 'cloudaxis' },
-    { name: 'Payment Gateway', id: 'payment-gateway' },
-    { name: 'Small Combo Growth Packages', id: 'small-combo' },
-    { name: 'Website and Web App Pricing', id: 'website-webapp' },
-    { name: 'Youtube Marketing', id: 'youtube-marketing' },
+    { name: "WebCraft", id: "webcraft" },
+    { name: "CodeCore", id: "codecore" },
+    { name: "ShopSphere", id: "shopsphere" },
+    { name: "SyncSuite", id: "syncsuite" },
+    { name: "BrandPulse", id: "brandpulse" },
+    { name: "CloudAxis", id: "cloudaxis" },
+    { name: "Payment Gateway", id: "payment-gateway" },
+    { name: "Small Combo Growth Packages", id: "small-combo" },
+    { name: "Website and Web App Pricing", id: "website-webapp" },
+    { name: "Youtube Marketing", id: "youtube-marketing" },
   ];
 
   return (
@@ -23,7 +25,7 @@ const Footer = () => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-8">
           
-          {/* Logo and Contact Info */}
+          {/* Logo & Contact Info */}
           <div className="col-span-1">
             <Link href={`/`} className="flex-shrink-0">
               <Image
@@ -65,19 +67,29 @@ const Footer = () => {
             <h3 className="text-lg font-semibold mb-4">Quick Links</h3>
             <ul className="space-y-2">
               <li>
-                <a href="/" className="hover:text-blue-400 transition-colors duration-200">
+                <Link href="/" className="hover:text-blue-400 transition-colors duration-200">
                   Home
-                </a>
+                </Link>
               </li>
               <li>
-                <a href="/terms" className="hover:text-blue-400 transition-colors duration-200">
+                <Link href="/whyUs" className="hover:text-blue-400 transition-colors duration-200">
+                  Why Choose Us
+                </Link>
+              </li>
+              <li>
+                <Link href="/websitebuilder" className="hover:text-blue-400 transition-colors duration-200">
+                  Website Templates
+                </Link>
+              </li>
+              <li>
+                <Link href="/terms" className="hover:text-blue-400 transition-colors duration-200">
                   Terms and Conditions
-                </a>
+                </Link>
               </li>
               <li>
-                <a href="/privacy" className="hover:text-blue-400 transition-colors duration-200">
+                <Link href="/privacy" className="hover:text-blue-400 transition-colors duration-200">
                   Privacy Policy
-                </a>
+                </Link>
               </li>
             </ul>
           </div>
@@ -101,9 +113,7 @@ const Footer = () => {
 
         {/* Copyright */}
         <div className="border-t border-gray-700 mt-8 pt-8 text-center">
-          <p className="text-gray-400">
-            © IT Alliance 2021. All rights reserved.
-          </p>
+          <p className="text-gray-400">© IT Alliance 2021. All rights reserved.</p>
         </div>
       </div>
     </footer>
