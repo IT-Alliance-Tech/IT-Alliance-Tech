@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect, useRef } from "react";
 
 const templates = [
   { id: 1, title: "Car Rental", previewLink: "https://car-rental-two-xi.vercel.app/", category: "business" },
@@ -17,14 +17,88 @@ const templates = [
   { id: 12, title: "Travel-001", previewLink: "https://travels-001.vercel.app/", category: "business" },
   { id: 13, title: "Business-001", previewLink: "https://business001.vercel.app/", category: "business" },
   { id: 14, title: "Business-002", previewLink: "https://business002.vercel.app/", category: "business" },
-  { id: 15, title: "Jewellery Shop", previewLink: "https://your-demo-link15.com", category: "ecommerce" },
 ];
 
-export default function TemplatesPage() {
+export default function Websitebuilder() {
   const [filter, setFilter] = useState("all");
   const [search, setSearch] = useState("");
+  const canvasRef = useRef(null);
+  const containerRef = useRef(null);
 
-  // ✅ Filtering logic
+  useEffect(() => {
+    const canvas = canvasRef.current;
+    const ctx = canvas.getContext("2d");
+
+    let width = (canvas.width = window.innerWidth);
+    let height = (canvas.height = window.innerHeight);
+
+    const circles = [];
+    const CIRCLE_COUNT = 50;
+
+    for (let i = 0; i < CIRCLE_COUNT; i++) {
+      circles.push({
+        x: Math.random() * width,
+        y: Math.random() * height,
+        size: 3 + Math.random() * 5,
+        vx: (Math.random() - 0.5) * 0.4,
+        vy: (Math.random() - 0.5) * 0.4,
+        hue: 200 + Math.random() * 40,
+      });
+    }
+
+    function draw() {
+      ctx.fillStyle = "#ffffff";
+      ctx.fillRect(0, 0, width, height);
+
+      for (let i = 0; i < CIRCLE_COUNT; i++) {
+        for (let j = i + 1; j < CIRCLE_COUNT; j++) {
+          const dx = circles[i].x - circles[j].x;
+          const dy = circles[i].y - circles[j].y;
+          const dist = Math.sqrt(dx * dx + dy * dy);
+          if (dist < 130) {
+            ctx.strokeStyle = `rgba(30,90,200,${0.25 - dist / 600})`;
+            ctx.lineWidth = 0.8;
+            ctx.beginPath();
+            ctx.moveTo(circles[i].x, circles[i].y);
+            ctx.lineTo(circles[j].x, circles[j].y);
+            ctx.stroke();
+          }
+        }
+      }
+
+      circles.forEach((c) => {
+        const gradient = ctx.createRadialGradient(c.x, c.y, 0, c.x, c.y, c.size);
+        gradient.addColorStop(0, `hsla(${c.hue}, 70%, 60%, 0.8)`);
+        gradient.addColorStop(1, `hsla(${c.hue}, 60%, 80%, 0)`);
+
+        ctx.fillStyle = gradient;
+        ctx.beginPath();
+        ctx.arc(c.x, c.y, c.size, 0, Math.PI * 2);
+        ctx.fill();
+
+        c.x += c.vx;
+        c.y += c.vy;
+        c.hue += 0.05;
+
+        if (c.x < 0) c.x = width;
+        if (c.x > width) c.x = 0;
+        if (c.y < 0) c.y = height;
+        if (c.y > height) c.y = 0;
+      });
+
+      requestAnimationFrame(draw);
+    }
+
+    draw();
+
+    const handleResize = () => {
+      width = canvas.width = window.innerWidth;
+      height = canvas.height = window.innerHeight;
+    };
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
+
   const filteredTemplates = templates.filter(
     (t) =>
       (filter === "all" || t.category === filter) &&
@@ -32,37 +106,36 @@ export default function TemplatesPage() {
   );
 
   return (
-    <div className="w-full min-h-screen bg-gradient-to-br from-sky-50 via-white to-sky-100 flex flex-col items-center py-20 relative overflow-hidden">
-      {/* Animated Background */}
-      <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_left,#cce5ff_0%,_transparent_40%),_radial-gradient(circle_at_bottom_right,#ffecd2_0%,_transparent_40%)] animate-gradientMove opacity-70"></div>
+    <div
+      ref={containerRef}
+      className="relative w-full min-h-screen flex flex-col items-center justify-center py-20 overflow-hidden bg-white"
+    >
+      <canvas ref={canvasRef} className="absolute inset-0 w-full h-full" />
 
-      {/* Header */}
-      <div className="text-center mb-14 px-4 relative z-10 animate-fadeIn">
-        <h2 className="text-5xl font-extrabold text-gray-900 mb-4">
-          Professionally Designed{" "}
-          <span className="text-sky-600">Website Templates</span>
+      <div className="relative z-10 text-center mb-16 px-6">
+        <h2 className="text-5xl font-extrabold mb-4 text-[#0B1A2E]">
+          Explore Our{" "}
+          <span className="text-[#0077B6]">Website Templates</span>
         </h2>
-        <p className="text-lg text-gray-600 max-w-2xl mx-auto">
-          Choose from{" "}
-          <span className="font-semibold text-sky-600">15+ customizable</span>{" "}
-          website templates built to meet your business needs.
+        <p className="text-gray-700 text-lg max-w-3xl mx-auto leading-relaxed">
+          Choose from 14 modern, responsive templates — designed with elegance
+          and powered for performance.
         </p>
       </div>
 
-      {/* Filter Buttons */}
-      <div className="flex flex-wrap justify-center gap-4 mb-10 relative z-10">
+      <div className="flex flex-wrap justify-center gap-5 mb-12 relative z-10">
         {[
-          { label: "E-COMMERCE", value: "ecommerce", gradient: "from-pink-500 to-red-500" },
-          { label: "BUSINESS", value: "business", gradient: "from-amber-500 to-orange-500" },
-          { label: "ALL", value: "all", gradient: "from-sky-500 to-blue-600" },
+          { label: "E-COMMERCE", value: "ecommerce", color: "from-[#00B4D8] to-[#0096C7]" },
+          { label: "BUSINESS", value: "business", color: "from-[#0077B6] to-[#023E8A]" },
+          { label: "ALL", value: "all", color: "from-[#90E0EF] to-[#00B4D8]" },
         ].map((btn) => (
           <button
             key={btn.value}
-            onClick={() => setFilter(btn.value)} // ✅ Works fine
-            className={`px-8 py-2 rounded-full font-semibold text-white shadow-lg transition-all duration-300 transform hover:scale-110 hover:shadow-2xl border-2 border-transparent ${
+            onClick={() => setFilter(btn.value)}
+            className={`px-7 py-2 rounded-full font-semibold text-white text-sm shadow-lg transition-all duration-300 transform hover:scale-110 ${
               filter === btn.value
-                ? `bg-gradient-to-r ${btn.gradient}`
-                : `bg-gradient-to-r ${btn.gradient} opacity-80 hover:opacity-100`
+                ? `bg-gradient-to-r ${btn.color} shadow-blue-400/40`
+                : `bg-gradient-to-r ${btn.color} opacity-80`
             }`}
           >
             {btn.label}
@@ -70,60 +143,50 @@ export default function TemplatesPage() {
         ))}
       </div>
 
-      {/* Search Box */}
-      <div className="relative mb-12 w-full max-w-md z-10 animate-slideUp">
+      <div className="relative w-full max-w-md mb-12 z-10">
         <input
           type="text"
           placeholder="Search templates..."
-          className="w-full border border-gray-300 rounded-full px-5 py-3 shadow-md focus:outline-none focus:ring-2 focus:ring-sky-400 transition-all duration-300 hover:shadow-lg"
+          className="w-full px-5 py-3 rounded-full border border-[#0077B640] bg-[#E8F6FF] text-[#0B1A2E] placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-[#00B4D8] transition-all duration-300"
           value={search}
           onChange={(e) => setSearch(e.target.value)}
         />
-        <span className="absolute right-5 top-3 text-gray-400">🔍</span>
+        <span className="absolute right-6 top-3 text-[#0077B6] text-lg">🔍</span>
       </div>
 
-      {/* Templates Grid (3 per row) */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10 px-6 max-w-[95rem] z-10">
+      <div className="relative z-10 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-10 px-8 max-w-[100rem]">
         {filteredTemplates.map((template) => (
           <div
             key={template.id}
-            className="bg-white rounded-2xl shadow-xl hover:shadow-2xl transition-all duration-500 p-6 flex flex-col items-center text-center hover:-translate-y-2 relative overflow-hidden group animate-fadeUp w-full h-[380px]" // ⬇️ Decreased height
+            className="bg-gradient-to-br from-[#ffffff40] to-[#00B4D820] backdrop-blur-xl rounded-3xl shadow-2xl p-6 flex flex-col items-center text-center transition-all duration-700 hover:-translate-y-3 hover:shadow-[#00B4D8]/40 border border-[#00B4D830]"
           >
-            {/* Title */}
-            <h3 className="text-xl font-semibold text-gray-800 mb-4 relative z-10 group-hover:text-sky-700 transition-colors duration-300">
+            <h3 className="text-2xl font-bold text-[#0077B6] mb-4">
               {template.title}
             </h3>
 
-            {/* Hero Section Preview - increased width */}
-            <div className="relative w-full rounded-xl overflow-hidden border border-gray-200 shadow-inner mb-6 transition-transform duration-500 group-hover:scale-[1.02] flex justify-center">
+            <div className="relative w-full rounded-2xl overflow-hidden border border-[#00B4D840] shadow-inner mb-6">
               <iframe
                 src={template.previewLink}
-                className="rounded-lg"
+                className="rounded-lg w-full"
                 style={{
-                  width: "300%", 
-                  height: "250px",
+                  height: "220px",
                   border: "none",
                   pointerEvents: "none",
-                  overflow: "hidden",
-                  transform: "scale(1)",
-                  transformOrigin: "top center",
                 }}
                 title={template.title}
               />
-              <div className="absolute bottom-0 left-0 w-full h-10 bg-gradient-to-t from-white to-transparent"></div>
             </div>
 
-            {/* Buttons */}
-            <div className="flex space-x-4 relative z-10 mt-auto">
+            <div className="flex space-x-4 mt-auto">
               <button
                 onClick={() => window.open(template.previewLink, "_blank")}
-                className="px-6 py-2 rounded-full bg-gradient-to-r from-sky-500 to-blue-600 text-white font-medium hover:scale-105 transition-transform shadow-md hover:shadow-lg"
+                className="px-6 py-2 rounded-full bg-gradient-to-r from-[#00B4D8] to-[#0096C7] text-white font-semibold hover:scale-105 transition-transform shadow-md"
               >
                 Preview
               </button>
               <button
                 onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
-                className="px-6 py-2 rounded-full bg-gradient-to-r from-yellow-400 to-amber-500 text-white font-medium hover:scale-105 transition-transform shadow-md hover:shadow-lg"
+                className="px-6 py-2 rounded-full bg-gradient-to-r from-[#FFD700] to-[#FFB800] text-[#0b1a2e] font-semibold hover:scale-105 transition-transform shadow-md"
               >
                 Get Started
               </button>
