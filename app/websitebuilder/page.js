@@ -112,7 +112,8 @@ export default function Websitebuilder() {
     >
       <canvas ref={canvasRef} className="absolute inset-0 w-full h-full" />
 
-      <div className="relative z-10 text-center mb-16 px-6">
+      {/* Reduced margin below heading */}
+      <div className="relative z-10 text-center mb-8 px-6">
         <h2 className="text-5xl font-extrabold mb-4 text-[#0B1A2E]">
           Explore Our{" "}
           <span className="text-[#0077B6]">Website Templates</span>
@@ -154,39 +155,42 @@ export default function Websitebuilder() {
         <span className="absolute right-6 top-3 text-[#0077B6] text-lg">🔍</span>
       </div>
 
+      {/* Cards Section */}
       <div className="relative z-10 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-10 px-8 max-w-[100rem]">
         {filteredTemplates.map((template) => (
           <div
             key={template.id}
-            className="bg-gradient-to-br from-[#ffffff40] to-[#00B4D820] backdrop-blur-xl rounded-3xl shadow-2xl p-6 flex flex-col items-center text-center transition-all duration-700 hover:-translate-y-3 hover:shadow-[#00B4D8]/40 border border-[#00B4D830]"
+            className="bg-gradient-to-br from-[#ffffff40] to-[#00B4D820] backdrop-blur-xl rounded-3xl shadow-2xl p-5 flex flex-col justify-between items-center text-center transition-all duration-700 hover:-translate-y-3 hover:shadow-[#00B4D8]/40 border border-[#00B4D830]"
           >
-            <h3 className="text-2xl font-bold text-[#0077B6] mb-4">
-              {template.title}
-            </h3>
+            <div>
+              <h3 className="text-2xl font-bold text-[#0077B6] mb-2 mt-1">
+                {template.title}
+              </h3>
 
-            <div className="relative w-full rounded-2xl overflow-hidden border border-[#00B4D840] shadow-inner mb-6">
-              <iframe
-                src={template.previewLink}
-                className="rounded-lg w-full"
-                style={{
-                  height: "220px",
-                  border: "none",
-                  pointerEvents: "none",
-                }}
-                title={template.title}
-              />
+              <div className="relative w-full rounded-2xl overflow-hidden border border-[#00B4D840] shadow-inner mb-3">
+                <iframe
+                  src={template.previewLink}
+                  className="rounded-lg w-full"
+                  style={{
+                    height: "180px",
+                    border: "none",
+                    pointerEvents: "none",
+                  }}
+                  title={template.title}
+                />
+              </div>
             </div>
 
-            <div className="flex space-x-4 mt-auto">
+            <div className="flex space-x-4 mt-1 mb-1">
               <button
                 onClick={() => window.open(template.previewLink, "_blank")}
-                className="px-6 py-2 rounded-full bg-gradient-to-r from-[#00B4D8] to-[#0096C7] text-white font-semibold hover:scale-105 transition-transform shadow-md"
+                className="px-5 py-2 rounded-full bg-gradient-to-r from-[#00B4D8] to-[#0096C7] text-white font-semibold hover:scale-105 transition-transform shadow-md text-sm"
               >
                 Preview
               </button>
               <button
                 onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
-                className="px-6 py-2 rounded-full bg-gradient-to-r from-[#FFD700] to-[#FFB800] text-[#0b1a2e] font-semibold hover:scale-105 transition-transform shadow-md"
+                className="px-5 py-2 rounded-full bg-gradient-to-r from-[#FFD700] to-[#FFB800] text-[#0b1a2e] font-semibold hover:scale-105 transition-transform shadow-md text-sm"
               >
                 Get Started
               </button>
