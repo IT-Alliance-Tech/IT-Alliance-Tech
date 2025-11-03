@@ -188,7 +188,7 @@ const ServicesPage = () => {
             {services.map((service, index) => (
               <div
                 key={index}
-                id={service.id} // ✅ explicit id for linking
+                id={service.id}
                 className={`grid grid-cols-1 lg:grid-cols-2 gap-12 items-center p-6 rounded-2xl shadow-lg ${
                   index % 2 === 1 ? "lg:grid-flow-col-dense" : ""
                 }`}
@@ -210,7 +210,7 @@ const ServicesPage = () => {
                     <Image
                       src={service.image}
                       alt={service.title}
-                      className="w-full h-auto rounded-2xl"
+                      className="w-full h-[320px] md:h-[380px] object-contain rounded-2xl"
                       priority={index < 2}
                     />
                   </div>
@@ -222,7 +222,10 @@ const ServicesPage = () => {
                     index % 2 === 0 ? "slide-from-left" : "slide-from-right"
                   } ${index % 2 === 1 ? "lg:col-start-1" : ""}`}
                 >
-                  <h2 className="text-3xl font-bold text-gray-900" style={{ color: "#001a33" }}>
+                  <h2
+                    className="text-3xl font-bold text-gray-900"
+                    style={{ color: "#001a33" }}
+                  >
                     {service.title}
                   </h2>
                   <p className="text-lg text-gray-600 leading-relaxed">
