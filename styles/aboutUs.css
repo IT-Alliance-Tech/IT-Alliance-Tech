@@ -1,6 +1,6 @@
 /* ✅ Adjusted overall section spacing */
 .aboutSection {
-  padding-top: 5px;   /* reduced top padding to move section up */
+  padding-top: 1px;   /* reduced top padding to move section up */
   padding-bottom: 80px;
   background-color: #ffffff;
 }

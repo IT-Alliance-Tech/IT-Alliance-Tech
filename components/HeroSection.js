@@ -15,15 +15,22 @@ const HeroSection = () => {
   return (
     <section className="hero-section flex flex-col md:flex-row items-center justify-between px-6 md:px-16 py-8 bg-white">
       {/* ✅ Left Side - Content */}
-      <div className="text-left md:w-1/2 space-y-5 hero-text-section">
-        <h1 className="text-4xl md:text-6xl font-bold text-gray-900">
-  We Build <span className="highlight-blue">Digital Success</span>
-</h1>
-        <p className="text-lg text-gray-700 leading-relaxed">
+      <div className="text-left md:w-1/2 hero-text-section">
+        <h1 className="text-4xl md:text-6xl font-bold text-gray-900 mb-5">
+          We Build <span className="highlight-blue">Digital Success</span>
+        </h1>
+
+        {/* ✅ Added margin-top for extra spacing below heading */}
+        <p className="text-lg text-gray-700 leading-relaxed mb-6">
           Helping startups grow faster, reach their audience, and stand out with
           powerful online presence.
         </p>
-        <button className="hero-btn-primary move-down" onClick={handleGetStarted}>
+
+        {/* ✅ Button spaced a little more below paragraph */}
+        <button
+          className="hero-btn-primary move-down mt-2"
+          onClick={handleGetStarted}
+        >
           Book a Free Consultation →
         </button>
       </div>
