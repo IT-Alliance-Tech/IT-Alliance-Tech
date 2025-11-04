@@ -1,81 +1,113 @@
+/* ✅ Hero Section */
 .hero-section {
   position: relative;
   width: 100%;
-  min-height: 80vh;
+  min-height: 65vh;
   overflow: hidden;
   display: flex;
   align-items: center;
   justify-content: center;
-  text-align: center;
-  background-color: #001a33;
+  text-align: left;
+  background-color: #ffffff;
+  padding-top: 30px;
+  padding-bottom: 3px;
 }
 
-.hero-canvas {
-  position: absolute;
-  top: 0;
-  left: 0;
-  z-index: 1;
-  width: 100%;
-  height: 100%;
+/* ✅ Move text section slightly up */
+.hero-text-section {
+  margin-top: -20px; /* moves text section up */
 }
 
-.hero-content {
-  position: relative;
-  z-index: 10;
-  padding: 2rem;
+/* ✅ Move button slightly down */
+.move-down {
+  margin-top: 15px; /* pushes only the button down */
 }
 
-/* Button */
+/* ✅ Floating animation */
+.floating-image {
+  animation: floatUpDown 3s ease-in-out infinite;
+}
+
+@keyframes floatUpDown {
+  0% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-15px);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}
+
+/* ✅ Hero image styling (no shadow, larger) */
+.hero-image {
+  width: 120%;
+  max-width: 500px;
+  height: auto;
+  border-radius: 1rem;
+  object-fit: contain;
+  box-shadow: none;
+}
+
+/* ✅ Highlight for “Digital Success” */
+.highlight-blue {
+  color: #001a33;
+}
+
+/* ✅ Button styling (blue theme) */
 .hero-btn-primary {
   padding: 1rem 2rem;
-  background-color: #ffd700;
-  color: #001a33;
+  background-color: #001a33;
+  color: #ffffff;
   font-weight: 600;
   border-radius: 0.75rem;
   transition: all 0.3s ease;
-  box-shadow: 0 8px 20px rgba(255, 215, 0, 0.4);
-}
-.hero-btn-primary:hover {
-  transform: translateY(-3px) scale(1.05);
-  box-shadow: 0 12px 30px rgba(255, 215, 0, 0.6);
+  box-shadow: 0 6px 15px rgba(0, 26, 51, 0.25);
 }
 
+.hero-btn-primary:hover {
+  transform: translateY(-3px) scale(1.05);
+  background-color: #00284d;
+  box-shadow: 0 10px 25px rgba(0, 26, 51, 0.35);
+}
+
+/* ✅ Keep other background image sections unchanged */
 .bgImgSection1 {
   background-image: url("../assets/images/10-removebg-preview.png");
   background-size: auto;
   background-repeat: no-repeat;
   background-position: 110% 70%;
 }
+
 .bgImgSection2 {
   background-image: url("../assets/images/9-removebg-preview.png");
   background-size: auto;
   background-repeat: no-repeat;
   background-position: -10% 75%;
 }
+
 .bgImgSection2a {
   background-image: url("../assets/images/10-removebg-preview.png");
   background-size: auto;
   background-repeat: no-repeat;
   background-position: 110% -2000%;
 }
+
 .bgImgSection2b {
   background-image: url("../assets/images/1-removebg-preview.png");
   background-size: auto;
   background-repeat: no-repeat;
   background-position: 110% -20%;
 }
-.bgImgSection2a {
-  background-image: url("../assets/images/10-removebg-preview.png");
-  background-size: auto;
-  background-repeat: no-repeat;
-  background-position: 110% -2000%;
-}
+
 .bgImgSection3 {
   background-image: url("../assets/images/5-removebg-preview.png");
   background-size: auto;
   background-repeat: no-repeat;
   background-position: 110% -5%;
 }
+
 .bgImgSection4 {
   background-image: url("../assets/images/2-removebg-preview.png");
   background-size: auto;
