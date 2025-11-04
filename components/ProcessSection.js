@@ -29,79 +29,47 @@ export default function ProcessSection() {
   const canvasRef = useRef(null);
   const [svgProps, setSvgProps] = useState({ w: 0, h: 0, d: "" });
 
-  // ===== Animated blue-gray glowing circles background =====
+  // ✅ Background animation (same as Why Choose section)
   useEffect(() => {
     const canvas = canvasRef.current;
     const ctx = canvas.getContext("2d");
-    let width = (canvas.width = containerRef.current.offsetWidth);
-    let height = (canvas.height = containerRef.current.offsetHeight);
+    let width = (canvas.width = window.innerWidth);
+    let height = (canvas.height = window.innerHeight);
 
-    const circles = [];
-    const CIRCLE_COUNT = 50;
+    const particles = Array.from({ length: 50 }, () => ({
+      x: Math.random() * width,
+      y: Math.random() * height,
+      r: Math.random() * 6 + 2,
+      dx: (Math.random() - 0.5) * 1.5,
+      dy: (Math.random() - 0.5) * 1.5,
+      alpha: Math.random() * 0.5 + 0.3,
+    }));
 
-    for (let i = 0; i < CIRCLE_COUNT; i++) {
-      circles.push({
-        x: Math.random() * width,
-        y: Math.random() * height,
-        size: 4 + Math.random() * 12,
-        vx: (Math.random() - 0.5) * 0.6,
-        vy: (Math.random() - 0.5) * 0.6,
-        hue: 200 + Math.random() * 40, // blue-gray
-      });
-    }
-
-    function draw() {
+    function animate() {
       ctx.clearRect(0, 0, width, height);
+      particles.forEach((p) => {
+        p.x += p.dx;
+        p.y += p.dy;
+        if (p.x < 0 || p.x > width) p.dx *= -1;
+        if (p.y < 0 || p.y > height) p.dy *= -1;
 
-      // Draw connecting lines
-      for (let i = 0; i < CIRCLE_COUNT; i++) {
-        for (let j = i + 1; j < CIRCLE_COUNT; j++) {
-          const dx = circles[i].x - circles[j].x;
-          const dy = circles[i].y - circles[j].y;
-          const dist = Math.sqrt(dx * dx + dy * dy);
-          if (dist < 120) {
-            ctx.strokeStyle = `rgba(30,90,200,${1 - dist / 120})`;
-            ctx.lineWidth = 1;
-            ctx.beginPath();
-            ctx.moveTo(circles[i].x, circles[i].y);
-            ctx.lineTo(circles[j].x, circles[j].y);
-            ctx.stroke();
-          }
-        }
-      }
-
-      // Draw glowing circles
-      circles.forEach((c) => {
-        const gradient = ctx.createRadialGradient(c.x, c.y, 0, c.x, c.y, c.size);
-        gradient.addColorStop(0, `hsla(${c.hue}, 70%, 60%, 0.8)`);
-        gradient.addColorStop(1, `hsla(${c.hue}, 60%, 80%, 0)`);
-
-        ctx.fillStyle = gradient;
         ctx.beginPath();
-        ctx.arc(c.x, c.y, c.size, 0, Math.PI * 2);
+        ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+        ctx.fillStyle = `rgba(90,150,255,${p.alpha})`; // 💡 same glowing blue as Why Choose
         ctx.fill();
-
-        c.x += c.vx;
-        c.y += c.vy;
-        c.hue += 0.1;
-
-        if (c.x < 0) c.x = width;
-        if (c.x > width) c.x = 0;
-        if (c.y < 0) c.y = height;
-        if (c.y > height) c.y = 0;
       });
-
-      requestAnimationFrame(draw);
+      requestAnimationFrame(animate);
     }
 
-    draw();
+    animate();
 
-    const handleResize = () => {
-      width = canvas.width = containerRef.current.offsetWidth;
-      height = canvas.height = containerRef.current.offsetHeight;
+    const resize = () => {
+      width = canvas.width = window.innerWidth;
+      height = canvas.height = window.innerHeight;
     };
-    window.addEventListener("resize", handleResize);
-    return () => window.removeEventListener("resize", handleResize);
+
+    window.addEventListener("resize", resize);
+    return () => window.removeEventListener("resize", resize);
   }, []);
 
   // ===== SVG path connecting diamonds =====
@@ -169,7 +137,8 @@ export default function ProcessSection() {
 
   return (
     <section className="process-section py-12 px-4 md:px-8 relative">
-      <canvas ref={canvasRef} className="process-canvas" />
+      {/* ✅ Canvas animation background */}
+      <canvas ref={canvasRef} className="process-canvas"></canvas>
 
       <div className="max-w-6xl mx-auto relative" ref={containerRef}>
         {svgProps.d && (

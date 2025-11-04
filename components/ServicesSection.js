@@ -19,16 +19,66 @@ const ServicesSection = () => {
   const canvasRef = useRef(null);
 
   const services = [
-    { title: "Website & Web Applications", description: "Modern, secure, and conversion-driven websites that define your digital presence. Custom web apps built to automate, simplify, and accelerate your business operations.", image: websiteWebAppImg },
-    { title: "E-commerce Solutions", description: "End-to-end e-commerce platforms designed to convert visitors into loyal buyers. Seamless checkout, smart product displays, and intuitive management dashboards.", image: digitalGrowthImg },
-    { title: "Business Software & CRM Solutions", description: "We build custom CRM, ERP, and workflow automation tools to streamline your internal operations and improve decision-making.", image: hostingImg },
-    { title: "Digital Marketing & Branding", description: "Performance-focused strategies — from social media and SEO to paid campaigns — to turn attention into action.", image: digitalMarketingImg },
-    { title: "WhatsApp CRM & Business Automation", description: "Build instant engagement with customers through automated responses, follow-ups, and lead tracking. Your complete sales process simplified — from inquiry to closure.", image: aiChatbotImg },
-    { title: "Resource Staffing & Tech Support", description: "Skilled professionals who integrate seamlessly into your workflow — on-demand, full-time, or project-based.", image: mspImg },
-    { title: "Graphics & Media Pricing", description: "Professional graphic design and multimedia services that bring your brand vision to life. Our creative team delivers stunning visuals, engaging videos, and compelling content that captures attention and communicates your message effectively. From logos and branding to marketing materials and digital assets, we create designs that make an impact.", image: graphicsImg },
-    { title: "Payment Gateway", description: "Secure and seamless payment processing solutions that enhance customer experience and boost sales. Our payment gateway integration supports multiple payment methods, ensures PCI compliance, and provides real-time transaction monitoring. Accept payments globally with confidence, knowing your customers' data is protected with enterprise-grade security.", image: paymentGatewayImg },
-    { title: "Small Combo Growth Packages", description: "Tailored growth packages specifically designed for small businesses and startups. These cost-effective solutions combine essential digital services including basic website development, social media setup, local SEO, and lead generation tools. Perfect for businesses looking to establish their digital presence without breaking the budget.", image: smallComboImg },
-    { title: "YouTube Marketing", description: "Comprehensive YouTube marketing strategies that grow your channel and engage your audience. We handle everything from content creation and optimization to audience analysis and monetization strategies. Build a strong video presence, increase subscribers, and turn viewers into customers with our proven YouTube marketing techniques.", image: youtubeMarketingImg },
+    {
+      title: "Website & Web Applications",
+      description:
+        "Modern, secure, and conversion-driven websites that define your digital presence. Custom web apps built to automate, simplify, and accelerate your business operations.",
+      image: websiteWebAppImg,
+    },
+    {
+      title: "E-commerce Solutions",
+      description:
+        "End-to-end e-commerce platforms designed to convert visitors into loyal buyers. Seamless checkout, smart product displays, and intuitive management dashboards.",
+      image: digitalGrowthImg,
+    },
+    {
+      title: "Business Software & CRM Solutions",
+      description:
+        "We build custom CRM, ERP, and workflow automation tools to streamline your internal operations and improve decision-making.",
+      image: hostingImg,
+    },
+    {
+      title: "Digital Marketing & Branding",
+      description:
+        "Performance-focused strategies — from social media and SEO to paid campaigns — to turn attention into action.",
+      image: digitalMarketingImg,
+    },
+    {
+      title: "WhatsApp CRM & Business Automation",
+      description:
+        "Build instant engagement with customers through automated responses, follow-ups, and lead tracking. Your complete sales process simplified — from inquiry to closure.",
+      image: aiChatbotImg,
+    },
+    {
+      title: "Resource Staffing & Tech Support",
+      description:
+        "Skilled professionals who integrate seamlessly into your workflow — on-demand, full-time, or project-based.",
+      image: mspImg,
+    },
+    {
+      title: "Graphics & Media Pricing",
+      description:
+        "Professional graphic design and multimedia services that bring your brand vision to life. Our creative team delivers stunning visuals, engaging videos, and compelling content that captures attention and communicates your message effectively. From logos and branding to marketing materials and digital assets, we create designs that make an impact.",
+      image: graphicsImg,
+    },
+    {
+      title: "Payment Gateway",
+      description:
+        "Secure and seamless payment processing solutions that enhance customer experience and boost sales. Our payment gateway integration supports multiple payment methods, ensures PCI compliance, and provides real-time transaction monitoring. Accept payments globally with confidence, knowing your customers' data is protected with enterprise-grade security.",
+      image: paymentGatewayImg,
+    },
+    {
+      title: "Small Combo Growth Packages",
+      description:
+        "Tailored growth packages specifically designed for small businesses and startups. These cost-effective solutions combine essential digital services including basic website development, social media setup, local SEO, and lead generation tools. Perfect for businesses looking to establish their digital presence without breaking the budget.",
+      image: smallComboImg,
+    },
+    {
+      title: "YouTube Marketing",
+      description:
+        "Comprehensive YouTube marketing strategies that grow your channel and engage your audience. We handle everything from content creation and optimization to audience analysis and monetization strategies. Build a strong video presence, increase subscribers, and turn viewers into customers with our proven YouTube marketing techniques.",
+      image: youtubeMarketingImg,
+    },
   ];
 
   const columns = [
@@ -38,35 +88,35 @@ const ServicesSection = () => {
     [services[7], services[8], services[9]],
   ];
 
-  // Canvas background animation
+  // ✅ Light background floating circles animation (same as Testimonials)
   useEffect(() => {
     const canvas = canvasRef.current;
     const ctx = canvas.getContext("2d");
-    let width = canvas.width = window.innerWidth;
-    let height = canvas.height = window.innerHeight;
+    let width = (canvas.width = window.innerWidth);
+    let height = (canvas.height = window.innerHeight);
     let particles = [];
 
-    const colors = ["#ffd700", "#1e90ff", "#ff4500", "#32cd32"];
+    // Light pastel colors for subtle background effect
+    const colors = ["#f4e8ff", "#ffe9ec", "#e8f8ff", "#fff8e6"];
 
-    for (let i = 0; i < 20; i++) {
+    for (let i = 0; i < 25; i++) {
       particles.push({
         x: Math.random() * width,
         y: Math.random() * height,
-        radius: 20 + Math.random() * 40,
+        radius: 30 + Math.random() * 50,
         color: colors[Math.floor(Math.random() * colors.length)],
-        dx: (Math.random() - 0.5) * 0.5,
-        dy: (Math.random() - 0.5) * 0.5,
+        dx: (Math.random() - 0.5) * 0.3,
+        dy: (Math.random() - 0.5) * 0.3,
       });
     }
 
     const animate = () => {
       ctx.clearRect(0, 0, width, height);
-
-      particles.forEach(p => {
+      particles.forEach((p) => {
         ctx.beginPath();
         ctx.arc(p.x, p.y, p.radius, 0, Math.PI * 2);
         ctx.fillStyle = p.color;
-        ctx.globalAlpha = 0.15;
+        ctx.globalAlpha = 0.3;
         ctx.fill();
         p.x += p.dx;
         p.y += p.dy;
@@ -76,7 +126,6 @@ const ServicesSection = () => {
         if (p.y > height + 50) p.y = -50;
         if (p.y < -50) p.y = height + 50;
       });
-
       requestAnimationFrame(animate);
     };
 
@@ -87,20 +136,22 @@ const ServicesSection = () => {
       height = canvas.height = window.innerHeight;
     };
     window.addEventListener("resize", handleResize);
-
     return () => window.removeEventListener("resize", handleResize);
   }, []);
 
   return (
     <section className="services-section relative overflow-hidden">
-      {/* Canvas background */}
+      {/* ✅ Background circles animation */}
       <canvas ref={canvasRef} className="service-canvas"></canvas>
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <div className="text-center mb-16 animate-fadeUp">
-          <h2 className="text-4xl md:text-5xl font-bold text-[#001a33]">Services</h2>
+          <h2 className="text-4xl md:text-5xl font-bold text-[#001a33]">
+            Services
+          </h2>
           <p className="text-gray-600 mt-4 text-lg">
-            Every business has a story. We help you tell it — beautifully, powerfully, and digitally.
+            Every business has a story. We help you tell it — beautifully,
+            powerfully, and digitally.
           </p>
         </div>
 
@@ -125,9 +176,15 @@ const ServicesSection = () => {
                     }}
                   >
                     <div className="w-20 h-20 rounded-full bg-gray-100 flex items-center justify-center mb-4 group-hover:bg-white transition-all duration-300 animate-scaleUp">
-                      <Image src={service.image} alt={service.title} className="w-12 h-12 object-cover" />
+                      <Image
+                        src={service.image}
+                        alt={service.title}
+                        className="w-12 h-12 object-cover"
+                      />
                     </div>
-                    <h3 className="text-lg font-semibold mb-3">{service.title}</h3>
+                    <h3 className="text-lg font-semibold mb-3">
+                      {service.title}
+                    </h3>
                     <button
                       onClick={() => setSelectedService(service)}
                       className="text-orange-400 font-semibold transition-all duration-300 hover:underline"
@@ -150,38 +207,81 @@ const ServicesSection = () => {
 
             <div className="flex flex-col sm:flex-row items-center gap-6">
               <div className="bg-gray-100 rounded-2xl p-4 flex justify-center items-center w-32 h-32 flex-shrink-0">
-                <Image src={selectedService.image} alt={selectedService.title} className="w-20 h-20 object-cover" />
+                <Image
+                  src={selectedService.image}
+                  alt={selectedService.title}
+                  className="w-20 h-20 object-cover"
+                />
               </div>
               <div>
-                <h2 className="text-3xl font-bold mb-4">{selectedService.title}</h2>
-                <p className="leading-relaxed text-justify">{selectedService.description}</p>
+                <h2 className="text-3xl font-bold mb-4">
+                  {selectedService.title}
+                </h2>
+                <p className="leading-relaxed text-justify">
+                  {selectedService.description}
+                </p>
               </div>
             </div>
           </div>
         )}
       </div>
 
-      {/* Animations CSS */}
+      {/* ✅ Animations */}
       <style jsx>{`
         .animate-fadeUp {
           opacity: 0;
           transform: translateY(30px);
           animation: fadeUp 0.8s ease-out forwards;
         }
-        @keyframes fadeUp { 0% { opacity: 0; transform: translateY(30px); } 100% { opacity: 1; transform: translateY(0); } }
+        @keyframes fadeUp {
+          0% {
+            opacity: 0;
+            transform: translateY(30px);
+          }
+          100% {
+            opacity: 1;
+            transform: translateY(0);
+          }
+        }
 
         .animate-scaleUp {
           transform: scale(0);
           animation: scaleUp 0.6s ease-out forwards;
         }
-        @keyframes scaleUp { 0% { transform: scale(0); } 60% { transform: scale(1.1); } 100% { transform: scale(1); } }
+        @keyframes scaleUp {
+          0% {
+            transform: scale(0);
+          }
+          60% {
+            transform: scale(1.1);
+          }
+          100% {
+            transform: scale(1);
+          }
+        }
 
         .animate-slideUpFade {
           opacity: 0;
           transform: translateY(50px);
           animation: slideUpFade 0.6s ease-out forwards;
         }
-        @keyframes slideUpFade { 0% { opacity: 0; transform: translateY(50px); } 100% { opacity: 1; transform: translateY(0); } }
+        @keyframes slideUpFade {
+          0% {
+            opacity: 0;
+            transform: translateY(50px);
+          }
+          100% {
+            opacity: 1;
+            transform: translateY(0);
+          }
+        }
+
+        .service-canvas {
+          position: absolute;
+          inset: 0;
+          z-index: 0;
+          pointer-events: none;
+        }
       `}</style>
     </section>
   );
