@@ -30,18 +30,14 @@ const IndustriesSection = () => {
   ];
 
   const scrollLeft = () => {
-    if (scrollRef.current) {
-      scrollRef.current.scrollBy({ left: -300, behavior: "smooth" });
-    }
+    scrollRef.current?.scrollBy({ left: -300, behavior: "smooth" });
   };
 
   const scrollRight = () => {
-    if (scrollRef.current) {
-      scrollRef.current.scrollBy({ left: 300, behavior: "smooth" });
-    }
+    scrollRef.current?.scrollBy({ left: 300, behavior: "smooth" });
   };
 
-  // IntersectionObserver for card reveal
+  // Card reveal animation
   useEffect(() => {
     const cards = document.querySelectorAll(".industry-card");
     const observer = new IntersectionObserver(
@@ -58,7 +54,7 @@ const IndustriesSection = () => {
     return () => cards.forEach((card) => observer.unobserve(card));
   }, []);
 
-  // Background animation like Process section
+  // ✅ Light background floating circles animation (same as Why Choose Us)
   useEffect(() => {
     const canvas = canvasRef.current;
     const ctx = canvas.getContext("2d");
@@ -72,32 +68,31 @@ const IndustriesSection = () => {
     window.addEventListener("resize", resizeCanvas);
 
     const circles = [];
-    const CIRCLE_COUNT = 50;
+    const CIRCLE_COUNT = 60;
 
     for (let i = 0; i < CIRCLE_COUNT; i++) {
       circles.push({
         x: Math.random() * canvas.width,
         y: Math.random() * canvas.height,
-        size: 4 + Math.random() * 12,
-        vx: (Math.random() - 0.5) * 0.6,
-        vy: (Math.random() - 0.5) * 0.6,
-        hue: 200 + Math.random() * 40,
+        size: 3 + Math.random() * 8,
+        vx: (Math.random() - 0.5) * 0.4,
+        vy: (Math.random() - 0.5) * 0.4,
+        hue: 210 + Math.random() * 40, // light blue hues
       });
     }
 
     const draw = () => {
-      ctx.fillStyle = "#f5f5f5"; // slightly darker neutral background
-      ctx.fillRect(0, 0, canvas.width, canvas.height);
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
 
-      // Draw connecting lines
-      for (let i = 0; i < CIRCLE_COUNT; i++) {
-        for (let j = i + 1; j < CIRCLE_COUNT; j++) {
+      // Draw connecting lines (subtle like Why Choose Us)
+      for (let i = 0; i < circles.length; i++) {
+        for (let j = i + 1; j < circles.length; j++) {
           const dx = circles[i].x - circles[j].x;
           const dy = circles[i].y - circles[j].y;
           const dist = Math.sqrt(dx * dx + dy * dy);
           if (dist < 120) {
-            ctx.strokeStyle = `rgba(30,90,200,${1 - dist / 120})`;
-            ctx.lineWidth = 1;
+            ctx.strokeStyle = `rgba(135,206,250,${0.1 - dist / 1200})`; // very light lines
+            ctx.lineWidth = 0.6;
             ctx.beginPath();
             ctx.moveTo(circles[i].x, circles[i].y);
             ctx.lineTo(circles[j].x, circles[j].y);
@@ -106,21 +101,23 @@ const IndustriesSection = () => {
         }
       }
 
-      // Draw glowing circles
+      // Draw glowing light circles
       circles.forEach((c) => {
-        const gradient = ctx.createRadialGradient(c.x, c.y, 0, c.x, c.y, c.size);
-        gradient.addColorStop(0, `hsla(${c.hue}, 70%, 60%, 0.8)`);
-        gradient.addColorStop(1, `hsla(${c.hue}, 60%, 80%, 0)`);
+        const gradient = ctx.createRadialGradient(c.x, c.y, 0, c.x, c.y, c.size * 2);
+        gradient.addColorStop(0, `hsla(${c.hue}, 90%, 75%, 0.8)`);
+        gradient.addColorStop(1, `hsla(${c.hue}, 90%, 75%, 0)`);
 
         ctx.fillStyle = gradient;
         ctx.beginPath();
         ctx.arc(c.x, c.y, c.size, 0, Math.PI * 2);
         ctx.fill();
 
+        // Movement
         c.x += c.vx;
         c.y += c.vy;
-        c.hue += 0.1;
+        c.hue += 0.05;
 
+        // Boundary reset
         if (c.x < 0) c.x = canvas.width;
         if (c.x > canvas.width) c.x = 0;
         if (c.y < 0) c.y = canvas.height;
@@ -136,15 +133,11 @@ const IndustriesSection = () => {
   }, []);
 
   return (
-    <section className="industriesSection relative py-20" ref={sectionRef}>
-      <canvas ref={canvasRef} className="industries-bg-canvas" />
-
+    <section className="industriesSection relative py-20 overflow-hidden bg-white" ref={sectionRef}>
+      <canvas ref={canvasRef} className="industries-bg-canvas absolute inset-0 w-full h-full" />
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        {/* MAIN HEADING (no animation) */}
         <div className="text-center mb-10">
-          <h2 className="text-4xl font-bold text-gray-900">
-            Industries We Serve
-          </h2>
+          <h2 className="text-4xl font-bold text-gray-900">Industries We Serve</h2>
         </div>
 
         <div className="relative">
@@ -183,9 +176,7 @@ const IndustriesSection = () => {
                   />
                 </div>
                 <div className="p-6 text-center">
-                  <h3 className="text-xl font-bold text-gray-900">
-                    {industry.name}
-                  </h3>
+                  <h3 className="text-xl font-bold text-gray-900">{industry.name}</h3>
                 </div>
               </div>
             ))}
