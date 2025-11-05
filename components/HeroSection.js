@@ -16,7 +16,8 @@ const HeroSection = () => {
     <section className="hero-section flex flex-col md:flex-row items-center justify-between px-6 md:px-16 py-8 bg-white">
       {/* ✅ Left Side - Content */}
       <div className="text-left md:w-1/2 hero-text-section">
-        <h1 className="text-4xl md:text-6xl font-bold text-gray-900 mb-5">
+        {/* ✅ Add mt-4 on mobile to move heading down slightly */}
+        <h1 className="text-4xl md:text-6xl font-bold text-gray-900 mb-5 mt-4 md:mt-0">
           We Build <span className="highlight-blue">Digital Success</span>
         </h1>
 
