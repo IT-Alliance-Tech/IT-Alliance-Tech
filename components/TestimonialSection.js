@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect } from "react";
 import { FaStar, FaQuoteLeft } from "react-icons/fa";
 import "../styles/testimonialSection.css";
 
@@ -14,7 +14,6 @@ const happyClients = [
 
 export default function TestimonialSection() {
   const [current, setCurrent] = useState(0);
-  const canvasRef = useRef(null);
 
   const prevClient = () =>
     setCurrent((prev) => (prev === 0 ? happyClients.length - 1 : prev - 1));
@@ -26,54 +25,8 @@ export default function TestimonialSection() {
     return () => clearInterval(interval);
   }, []);
 
-  // ✅ Same background animation as WhyChooseSection (only circles lighter)
-  useEffect(() => {
-    const canvas = canvasRef.current;
-    const ctx = canvas.getContext("2d");
-    let width = (canvas.width = window.innerWidth);
-    let height = (canvas.height = window.innerHeight);
-
-    const particles = Array.from({ length: 50 }, () => ({
-      x: Math.random() * width,
-      y: Math.random() * height,
-      r: Math.random() * 6 + 2,
-      dx: (Math.random() - 0.5) * 1.5,
-      dy: (Math.random() - 0.5) * 1.5,
-      alpha: Math.random() * 0.5 + 0.3,
-    }));
-
-    function animate() {
-      ctx.clearRect(0, 0, width, height);
-      particles.forEach((p) => {
-        p.x += p.dx;
-        p.y += p.dy;
-        if (p.x < 0 || p.x > width) p.dx *= -1;
-        if (p.y < 0 || p.y > height) p.dy *= -1;
-
-        ctx.beginPath();
-        ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
-        ctx.fillStyle = `rgba(200,180,255,${p.alpha})`; // 💡 lighter soft lavender color
-        ctx.fill();
-      });
-      requestAnimationFrame(animate);
-    }
-
-    animate();
-
-    const resize = () => {
-      width = canvas.width = window.innerWidth;
-      height = canvas.height = window.innerHeight;
-    };
-
-    window.addEventListener("resize", resize);
-    return () => window.removeEventListener("resize", resize);
-  }, []);
-
   return (
     <section id="testimonials" className="testimonials">
-      {/* ✅ Background Canvas Animation */}
-      <canvas ref={canvasRef} className="testimonials-canvas"></canvas>
-
       <h2 className="title">What Our Clients Say</h2>
 
       <div className="testimonial-content fade">

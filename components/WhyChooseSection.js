@@ -1,7 +1,7 @@
 "use client";
 import React, { useEffect } from "react";
 import { Public, RocketLaunch, AccountTree } from "@mui/icons-material";
-import "../styles/whyChooseSection.css";
+import "../styles/whyChooseSection.css"; // keep your CSS for reveal animation
 
 export default function WhyChooseSection() {
 
@@ -19,45 +19,6 @@ export default function WhyChooseSection() {
     );
     elements.forEach(el => observer.observe(el));
     return () => observer.disconnect();
-  }, []);
-
-  useEffect(() => {
-    // Particle background animation
-    const canvas = document.getElementById('bg-canvas');
-    const ctx = canvas.getContext('2d');
-    let width = canvas.width = window.innerWidth;
-    let height = canvas.height = window.innerHeight;
-
-    const particles = Array.from({length: 50}, () => ({
-      x: Math.random() * width,
-      y: Math.random() * height,
-      r: Math.random() * 6 + 2,
-      dx: (Math.random() - 0.5) * 1.5,
-      dy: (Math.random() - 0.5) * 1.5,
-      alpha: Math.random() * 0.5 + 0.3
-    }));
-
-    function animate() {
-      ctx.clearRect(0,0,width,height);
-      particles.forEach(p => {
-        p.x += p.dx;
-        p.y += p.dy;
-        if(p.x < 0 || p.x > width) p.dx *= -1;
-        if(p.y < 0 || p.y > height) p.dy *= -1;
-        ctx.beginPath();
-        ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
-        ctx.fillStyle = `rgba(124,58,237,${p.alpha})`;
-        ctx.fill();
-      });
-      requestAnimationFrame(animate);
-    }
-
-    animate();
-
-    window.addEventListener('resize', () => {
-      width = canvas.width = window.innerWidth;
-      height = canvas.height = window.innerHeight;
-    });
   }, []);
 
   const features = [
@@ -79,20 +40,25 @@ export default function WhyChooseSection() {
   ];
 
   return (
-    <section className="why-choose-section">
-      <canvas className="animated-bg" id="bg-canvas"></canvas>
-
-      <div className="content-wrapper">
-        <h2 className="title reveal">Why Choose IT Alliance Tech</h2>
-        <p className="subtitle reveal">
+    <section className="why-choose-section py-24 px-5 relative text-white">
+      <div className="content-wrapper max-w-6xl mx-auto text-center">
+        <h2 className="title reveal text-3xl md:text-4xl font-bold mb-4">
+          Why Choose IT Alliance Tech
+        </h2>
+        <p className="subtitle reveal text-lg md:text-xl mb-12">
           Excellence, innovation, and growth at every stage.
         </p>
 
-        <div className="features">
+        {/* Features container */}
+        <div className="features flex flex-wrap justify-center gap-6">
           {features.map((feature, idx) => (
-            <div className="feature reveal" key={idx}>
-              <div className="icon">{feature.icon}</div>
-              <h3>{feature.title}</h3>
+            <div 
+              key={idx} 
+              className="feature reveal bg-white/10 rounded-xl p-8 text-center 
+                         flex-none sm:flex-1 sm:min-w-[250px] sm:max-w-xs"
+            >
+              <div className="icon mb-4">{feature.icon}</div>
+              <h3 className="text-xl font-semibold mb-2">{feature.title}</h3>
               <p>{feature.desc}</p>
             </div>
           ))}
