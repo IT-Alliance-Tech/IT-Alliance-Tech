@@ -26,51 +26,7 @@ export default function ProcessSection() {
   const rafRef = useRef(null);
   const roRef = useRef(null);
   const pathRef = useRef(null);
-  const canvasRef = useRef(null);
   const [svgProps, setSvgProps] = useState({ w: 0, h: 0, d: "" });
-
-  // ✅ Background animation (same as Why Choose section)
-  useEffect(() => {
-    const canvas = canvasRef.current;
-    const ctx = canvas.getContext("2d");
-    let width = (canvas.width = window.innerWidth);
-    let height = (canvas.height = window.innerHeight);
-
-    const particles = Array.from({ length: 50 }, () => ({
-      x: Math.random() * width,
-      y: Math.random() * height,
-      r: Math.random() * 6 + 2,
-      dx: (Math.random() - 0.5) * 1.5,
-      dy: (Math.random() - 0.5) * 1.5,
-      alpha: Math.random() * 0.5 + 0.3,
-    }));
-
-    function animate() {
-      ctx.clearRect(0, 0, width, height);
-      particles.forEach((p) => {
-        p.x += p.dx;
-        p.y += p.dy;
-        if (p.x < 0 || p.x > width) p.dx *= -1;
-        if (p.y < 0 || p.y > height) p.dy *= -1;
-
-        ctx.beginPath();
-        ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
-        ctx.fillStyle = `rgba(90,150,255,${p.alpha})`; // 💡 same glowing blue as Why Choose
-        ctx.fill();
-      });
-      requestAnimationFrame(animate);
-    }
-
-    animate();
-
-    const resize = () => {
-      width = canvas.width = window.innerWidth;
-      height = canvas.height = window.innerHeight;
-    };
-
-    window.addEventListener("resize", resize);
-    return () => window.removeEventListener("resize", resize);
-  }, []);
 
   // ===== SVG path connecting diamonds =====
   const computePath = () => {
@@ -137,9 +93,6 @@ export default function ProcessSection() {
 
   return (
     <section className="process-section py-12 px-4 md:px-8 relative">
-      {/* ✅ Canvas animation background */}
-      <canvas ref={canvasRef} className="process-canvas"></canvas>
-
       <div className="max-w-6xl mx-auto relative" ref={containerRef}>
         {svgProps.d && (
           <svg
