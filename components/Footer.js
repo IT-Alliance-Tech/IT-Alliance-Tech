@@ -44,20 +44,20 @@ const Footer = () => {
                 <span>contact@italliance.tech</span>
               </a>
               <a
-                href="tel:9663265984"
+                href="tel:9108463663"
                 className="flex flex-wrap items-center gap-2 hover:text-blue-400 transition-colors duration-200"
               >
                 <RiPhoneLine size={18} />
-                <span>9663265984</span>
+                <span>9108463663</span>
               </a>
               <a
-                href="https://wa.me/919663265984"
+                href="https://wa.me/919164500849"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="flex flex-wrap items-center gap-2 hover:text-blue-400 transition-colors duration-200"
               >
                 <RiWhatsappLine size={18} />
-                <span>+91 96632 65984</span>
+                <span>+91 91645 00849</span>
               </a>
             </div>
           </div>
@@ -113,7 +113,7 @@ const Footer = () => {
 
         {/* Copyright */}
         <div className="border-t border-gray-700 mt-8 pt-8 text-center">
-          <p className="text-gray-400">© IT Alliance 2021. All rights reserved.</p>
+          <p className="text-gray-400">© IT Alliance 2025. All rights reserved.</p>
         </div>
       </div>
     </footer>
