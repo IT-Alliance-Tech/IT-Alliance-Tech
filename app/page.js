@@ -9,7 +9,7 @@ import ContactSection from "../components/ContactSection";
 import ProcessSection from "../components/ProcessSection";
 import TestimonialsSection from "../components/TestimonialSection";
 import WhyChooseSection from "../components/WhyChooseSection";
-import LogoSection from "../components/LogoSection"; // ✅ New Import
+import LogoSection from "../components/LogoSection";
 
 import "../styles/homePage.css";
 
