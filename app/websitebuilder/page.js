@@ -17,6 +17,11 @@ const templates = [
   { id: 12, title: "Travel-001", previewLink: "https://travels-001.vercel.app/", category: "business" },
   { id: 13, title: "Business-001", previewLink: "https://business001.vercel.app/", category: "business" },
   { id: 14, title: "Business-002", previewLink: "https://business002.vercel.app/", category: "business" },
+  { id: 15, title: "Eraflix Replica", previewLink: "https://eraflix-replica.vercel.app/", category: "ecommerce" },
+  { id: 16, title: "Real Estate", previewLink: "https://realestate-seven-liart.vercel.app/", category: "business" },
+  { id: 17, title: "Clinical Management", previewLink: "https://clinical-management-omega.vercel.app/book-appointment", category: "business" },
+  { id: 18, title: "KK Replica", previewLink: "https://kk-replica.vercel.app/", category: "ecommerce" },
+  { id: 19, title: "Recruitment Project", previewLink: "https://recruitment-project-dun.vercel.app/", category: "business" },
 ];
 
 export default function Websitebuilder() {
@@ -119,7 +124,7 @@ export default function Websitebuilder() {
           <span className="text-[#0077B6]">Website Templates</span>
         </h2>
         <p className="text-gray-700 text-lg max-w-3xl mx-auto leading-relaxed">
-          Choose from 14 modern, responsive templates — designed with elegance
+          Choose from 19 modern, responsive templates — designed with elegance
           and powered for performance.
         </p>
       </div>
