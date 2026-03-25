@@ -7,9 +7,13 @@ import FloatingIcon from "@/components/FloatingIcon";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata = {
-  title: "IT Alliance Tech - Empowering Your Business in the Digital Era",
+  title: "AI Business Automation & Digital Transformation Company | IT Alliance Tech",
   description:
-    "Transform your business with cutting-edge technology solutions. We deliver innovative IT services, digital marketing strategies, and custom web applications.",
+    "Boost your business growth with AI automation, CRM solutions, WhatsApp automation, and digital transformation services. IT Alliance Tech helps you scale faster with smart AI-driven solutions.",
+  keywords: "AI Business Automation Services",
+  alternates: {
+    canonical: "https://www.italliancetech.com",
+  },
 };
 
 export default function RootLayout({ children }) {
