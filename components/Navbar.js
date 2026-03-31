@@ -58,6 +58,12 @@ const Navbar = () => {
               >
                 Contact Us
               </Link>
+              <Link
+                href="/blog"
+                className="text-gray-700 px-3 py-2 rounded-md text-sm font-medium transition-all duration-200 hover:bg-[#001a33] hover:text-white"
+              >
+                Blog
+              </Link>
             </div>
           </div>
 
@@ -107,6 +113,13 @@ const Navbar = () => {
               onClick={toggleMenu}
             >
               Contact Us
+            </Link>
+            <Link
+              href="/blog"
+              className="text-gray-700 block px-3 py-2 rounded-md text-base font-medium transition-all duration-200 hover:bg-[#001a33] hover:text-white"
+              onClick={toggleMenu}
+            >
+              Blog
             </Link>
           </div>
         </div>
