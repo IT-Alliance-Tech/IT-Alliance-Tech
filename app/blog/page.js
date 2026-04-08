@@ -19,10 +19,10 @@ export default function BlogIndex() {
       {/* Blog Cards Grid */}
       <section className="py-16 px-4 sm:px-6 lg:px-8">
         <div className="max-w-7xl mx-auto">
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-10">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {blogPosts.map((post) => (
               <div key={post.id} className="bg-white rounded-xl shadow-lg overflow-hidden flex flex-col transition-transform duration-300 hover:scale-[1.02] border border-gray-100">
-                <div className="relative h-64 w-full">
+                <div className="relative h-48 w-full">
                   <Image 
                     src={post.image} 
                     alt={post.title} 
@@ -30,12 +30,12 @@ export default function BlogIndex() {
                     className="object-cover object-top"
                   />
                 </div>
-                <div className="p-8 flex flex-col flex-grow">
+                <div className="p-6 flex flex-col flex-grow">
                   <p className="text-sm text-gray-500 mb-2">{post.date}</p>
-                  <h2 className="text-2xl font-bold text-gray-900 mb-4 line-clamp-2">
+                  <h2 className="text-xl font-bold text-gray-900 mb-3 line-clamp-2">
                     {post.title}
                   </h2>
-                  <p className="text-gray-600 mb-6 flex-grow line-clamp-3">
+                  <p className="text-gray-600 mb-4 flex-grow line-clamp-3 text-sm">
                     {post.excerpt}
                   </p>
                   <Link 

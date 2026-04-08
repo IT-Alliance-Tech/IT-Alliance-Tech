@@ -75,13 +75,13 @@ export default function BlogPost({ params }) {
           </div>
 
           {/* Hero Image */}
-          <div className="relative w-full h-[400px] md:h-[550px] rounded-3xl overflow-hidden shadow-2xl group border-[6px] border-white">
-            <div className="absolute inset-0 bg-blue-900/10 group-hover:bg-transparent transition-colors duration-500 z-10"></div>
+          <div className="relative w-full h-[400px] md:h-[450px] rounded-3xl overflow-hidden shadow-xl group border-[6px] border-white bg-white">
+            <div className="absolute inset-0 bg-blue-900/5 group-hover:bg-transparent transition-colors duration-500 z-10 pointer-events-none"></div>
             <Image 
               src={post.image} 
               alt={post.title} 
               fill 
-              className="object-cover object-top transform group-hover:scale-105 transition-transform duration-700"
+              className="object-contain transform group-hover:scale-105 transition-transform duration-700 p-4"
               priority
             />
           </div>
